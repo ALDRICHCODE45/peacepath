@@ -6,7 +6,7 @@ export async function GET() {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
-  if (!user || user === null || !user.id) {
+  if (user === null) {
     throw new Error("something went wrong");
   }
 
@@ -27,5 +27,5 @@ export async function GET() {
       },
     });
   }
-  return NextResponse.redirect("http://localhost:3000/home/");
+  return NextResponse.redirect("http://localhost:3000/dashboard");
 }

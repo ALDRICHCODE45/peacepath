@@ -14,11 +14,12 @@ const openai = new OpenAI({
 export interface ClientMessage {
   id: string;
   text: ReactNode;
+  isKaiMessage: boolean;
 }
 
 const ASSISTANT_ID = "asst_OS10mO1yEGPJPYHrGJYf7Cfz";
 
-export async function submitMessage(question: string): Promise<ClientMessage> {
+export async function submitMessage(question: string) {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
   if (!user || !user.id) throw new Error("user not found");
@@ -124,7 +125,6 @@ export async function submitMessage(question: string): Promise<ClientMessage> {
     }
 
     textStream.done();
-    console.log(finalKaiText);
     //todo: guardar en db el mensaje de Kai
 
     //guardar en db el mensaje de Kai
@@ -140,6 +140,7 @@ export async function submitMessage(question: string): Promise<ClientMessage> {
   return {
     id: generateId(),
     text: textUIStream.value,
+    isKaiMessage: true,
   };
 }
 

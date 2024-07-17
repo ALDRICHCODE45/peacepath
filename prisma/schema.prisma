@@ -20,6 +20,13 @@ model Message {
   userId       String?
 }
 
+model Audio {
+  id     String  @unique @default(uuid())
+  url    String
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String?
+}
+
 model User {
   id        String    @id
   email     String    @unique
@@ -28,4 +35,5 @@ model User {
   Username  String    @unique
   thread_id String?
   messages  Message[]
+  audios    Audio[]
 }

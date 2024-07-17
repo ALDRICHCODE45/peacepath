@@ -8,6 +8,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
+import Image from "next/image";
 
 export default async function MainLayout({
   children,
@@ -29,14 +30,17 @@ export default async function MainLayout({
       <div className="flex min-h-screen w-full">
         <aside className="border-r dark:border-[#363b3d] bg-muted/40 p-4 sm:p-6 bg-white dark:bg-[#181a1b] min-w-[250px]">
           <div className="flex flex-col items-center gap-6">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary text-lg font-semibold text-primary-foreground">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full b text-lg font-semibold text-primary-foreground">
               <Link href="/">
-                <BotIcon className="h-6 w-6" />
+                <div className="bg-[#f4f4f5] dark:bg-black rounded-lg w-10 h-10 flex justify-center items-center">
+                  <BotIcon className="text-black dark:text-white" />
+                </div>
               </Link>
             </div>
             <div className="grid gap-1">
-              <div className="font-medium text-black dark:text-white">KAI</div>
-              <div className="text-sm text-muted-foreground">v1.0</div>
+              <div className="font-medium text-black dark:text-white">
+                {user.given_name}
+              </div>
             </div>
           </div>
           <Separator className="my-6 " />
@@ -64,7 +68,7 @@ export default async function MainLayout({
           <header className="border-b dark:border-b-[#363b3d] bg-muted/40 p-4 sm:p-6 bg-white dark:bg-[#181a1b]">
             <div className="flex items-center gap-4">
               <Avatar className="h-10 w-10">
-                <AvatarImage src="/kai.png" />
+                <AvatarImage src="/koala_profile.jpg" />
                 <AvatarFallback>CB</AvatarFallback>
               </Avatar>
               <div className="flex w-full justify-between">

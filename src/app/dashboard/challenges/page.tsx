@@ -37,7 +37,7 @@ export default function Component() {
     },
   ];
   return (
-    <div className=" text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
+    <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-black dark:text-white">
           Your Badges

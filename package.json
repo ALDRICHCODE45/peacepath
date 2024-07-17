@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.614.0",
     "@kinde-oss/kinde-auth-nextjs": "^2.3.4",
     "@prisma/client": "^5.16.2",
+    "@radix-ui/react-alert-dialog": "^1.1.1",
     "@radix-ui/react-avatar": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-dropdown-menu": "^2.1.1",
@@ -22,6 +24,7 @@
     "@react-three/fiber": "^8.16.8",
     "@types/three": "^0.166.0",
     "ai": "^3.2.22",
+    "animate.css": "^4.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.0",
@@ -38,7 +41,8 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.166.1",
-    "vaul": "^0.9.1"
+    "vaul": "^0.9.1",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "typescript": "^5",

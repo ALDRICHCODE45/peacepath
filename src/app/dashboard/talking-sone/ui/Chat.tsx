@@ -1,13 +1,22 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useActions } from "ai/rsc";
 import { ClientMessage } from "@/app/actions";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { generateId } from "ai";
+import KaiMessage from "./Messages/KaiMessage";
+import UserMessage from "./Messages/UserMessage";
+import "animate.css";
+import Image from "next/image";
 
 interface ChatProps {
   initialMessages: ClientMessage[];
 }
 
 export default function Chat({ initialMessages = [] }: ChatProps) {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<ClientMessage[]>(initialMessages);
   const { submitMessage } = useActions();
@@ -16,50 +25,65 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
     setMessages(initialMessages);
   }, [initialMessages]);
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages]);
+
+  const scrollToBottom = () => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   const handleSubmission = async () => {
     setMessages((currentMessages) => [
       ...currentMessages,
       {
-        id: "123",
+        id: generateId(10),
+        isKaiMessage: false,
         text: input,
       },
     ]);
-
     const response = await submitMessage(input);
+
     setMessages((currentMessages) => [...currentMessages, response]);
     setInput("");
   };
 
   return (
-    <div className="flex flex-col-reverse">
-      <div className="flex flex-row gap-2 p-2 bg-zinc-100 w-full">
-        <input
-          className="bg-zinc-100 w-full p-2 outline-none"
-          value={input}
-          onChange={(event) => setInput(event.target.value)}
-          placeholder="Ask a question"
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              handleSubmission();
-            }
-          }}
+    <div className="flex flex-col  " style={{ height: "calc(100vh - 150px)" }}>
+      <div className="flex-grow p-4 overflow-y-scroll ">
+        <KaiMessage text="Hola Mi nombre es kai, este es un espacio seguro en el que puedes decir todo lo que quieras y yo tratare de brindarte consuelo" />
+        <Image
+          src="/koala_message.jpg"
+          className="ml-[72px] rounded-xl"
+          alt="koala_message"
+          height={250}
+          width={250}
         />
-        <button
-          className="p-2 bg-zinc-900 text-zinc-100 rounded-md"
-          onClick={handleSubmission}
-        >
-          Send
-        </button>
+        {messages.map((message) =>
+          message.isKaiMessage ? (
+            <KaiMessage key={message.id} text={message.text} />
+          ) : (
+            <UserMessage key={message.id} text={message.text} />
+          )
+        )}
+        <div ref={messagesEndRef} />
       </div>
-
-      <div className="flex flex-col h-[calc(100dvh-56px)] overflow-y-scroll">
-        <div>
-          {messages.map((message) => (
-            <div key={message.id} className="flex flex-col gap-1 border-b p-2">
-              <div className="flex flex-row justify-between"></div>
-              <div>{message.text}</div>
-            </div>
-          ))}
+      <div className="sticky bottom-0 w-full bg-white dark:bg-[#181a1b] p-4 border-t">
+        <div className="flex items-center gap-4">
+          <Input
+            placeholder="Type your message..."
+            className="flex-grow dark:bg-white bg-white text-black"
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                handleSubmission();
+              }
+            }}
+          />
+          <Button onClick={handleSubmission}>Send</Button>
         </div>
       </div>
     </div>
