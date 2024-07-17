@@ -23,13 +23,13 @@ export const Hero = ({ user }: { user: any }) => {
             You Are Not Alone
           </div>
           <div className="font-extralight text-base md:text-4xl text-neutral-200 py-4">
-            Struggling today? Let's work through it together.
+            Struggling today? Lets work through it together.
           </div>
           <button className="bg-white rounded-full w-fit text-black px-4 py-2">
             {user !== null ? (
-              <Link href="/dashboard">Let's do it</Link>
+              <Link href="/dashboard">Lets do it</Link>
             ) : (
-              <LoginLink>Let's do it</LoginLink>
+              <LoginLink>Lets do it</LoginLink>
             )}
           </button>
         </motion.div>

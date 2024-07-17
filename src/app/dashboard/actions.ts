@@ -5,6 +5,7 @@ import { OpenAI } from "openai";
 import { generateId } from "ai";
 import { CREATE_PROMPT_AUDIO } from "./meditation/prompt";
 import { uploadFileToS3 } from "@/actions/uploadAudioToAwsS3";
+import { revalidatePath } from "next/cache";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -93,3 +94,4 @@ export const createPersonalMeditation = async () => {
     throw error;
   }
 };
+revalidatePath("/dashboard/meditation");

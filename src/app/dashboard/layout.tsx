@@ -8,7 +8,11 @@ import "./globals.css";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
-import Image from "next/image";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Peace Path",
+};
 
 export default async function MainLayout({
   children,

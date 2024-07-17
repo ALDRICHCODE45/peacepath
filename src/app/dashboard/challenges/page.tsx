@@ -7,6 +7,11 @@ import {
   Trophy,
 } from "lucide-react";
 import { GoalCard } from "./ui/GoalCard";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Peace Path - Goals and good habits",
+};
 
 export default function Component() {
   const goals = [
@@ -36,6 +41,7 @@ export default function Component() {
       icon: <NotebookTabs className="w-8 h-8  text-primary-foreground" />,
     },
   ];
+
   return (
     <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
       <div className="flex items-center justify-between mb-6">

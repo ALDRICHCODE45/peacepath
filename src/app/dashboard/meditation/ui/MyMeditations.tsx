@@ -10,7 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { AudioI, useAudioStore } from "@/store/audios.store";
+import { useAudioStore } from "@/store/audios.store";
 import { Play } from "lucide-react";
 import { AlertCrateMeditation } from "@/components/alert/AlertDialog";
 import { cn } from "@/utils/cn";

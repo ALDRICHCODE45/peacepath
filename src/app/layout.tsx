@@ -7,8 +7,8 @@ import { AI } from "./actions";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Peace Path",
-  description: "a sure place for bad days",
+  title: "Peace Path - Virtual Psychologist",
+  description: "A safe place for bad days",
 };
 
 export default function RootLayout({
@@ -19,6 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

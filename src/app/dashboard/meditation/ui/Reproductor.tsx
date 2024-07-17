@@ -32,7 +32,7 @@ export default function Reproductor({ initialAudios = [] }: Props) {
       const newAudio = new Audio(activeAudio);
       setAudio(newAudio);
     }
-  }, [activeAudio]);
+  }, [activeAudio, audio]);
 
   if (!loaded) {
     return <h1>Loading..</h1>;
