@@ -117,6 +117,7 @@ export async function submitMessage(question: string) {
                 }
               }
             });
+            textStream.done();
           } else if (event === "thread.run.failed") {
             console.error(data);
           }
@@ -124,7 +125,6 @@ export async function submitMessage(question: string) {
       }
     }
 
-    textStream.done();
     //todo: guardar en db el mensaje de Kai
 
     //guardar en db el mensaje de Kai
