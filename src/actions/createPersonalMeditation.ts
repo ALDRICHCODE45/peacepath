@@ -1,11 +1,11 @@
 "use server";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import prisma from "../lib/db";
 import { OpenAI } from "openai";
 import { generateId } from "ai";
-import { CREATE_PROMPT_AUDIO } from "./meditation/prompt";
 import { uploadFileToS3 } from "@/actions/uploadAudioToAwsS3";
 import { revalidatePath } from "next/cache";
+import prisma from "@/app/lib/db";
+import { CREATE_PROMPT_AUDIO } from "@/app/dashboard/meditation/prompt";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,

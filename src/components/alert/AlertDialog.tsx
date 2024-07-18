@@ -1,5 +1,5 @@
 "use client";
-import { createPersonalMeditation } from "@/app/dashboard/actions";
+import { createPersonalMeditation } from "@/actions/createPersonalMeditation";
 import {
   AlertDialog,
   AlertDialogAction,
