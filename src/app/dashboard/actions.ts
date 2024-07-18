@@ -34,6 +34,7 @@ export const createPersonalMeditation = async () => {
       },
     },
   });
+  console.log({ dbUser });
 
   if (!dbUser) {
     throw new Error("User not found in database");
@@ -58,6 +59,7 @@ export const createPersonalMeditation = async () => {
       ],
       model: "gpt-4-turbo",
     });
+    console.log({ promptResponse });
 
     if (
       !promptResponse ||
@@ -77,10 +79,13 @@ export const createPersonalMeditation = async () => {
     });
 
     const buffer = Buffer.from(await mp3.arrayBuffer());
-    const fileName = `personal_meditation-${generateId()}-${user.id}`;
+    const fileName = `personal_meditation-${user.given_name}-${generateId()}-${
+      user.id
+    }`;
     await uploadFileToS3(buffer, fileName);
 
     const url = `https://kia-audios.s3.amazonaws.com/myfolder/${fileName}`;
+    console.log({ url });
     await prisma.audio.create({
       data: {
         url,
