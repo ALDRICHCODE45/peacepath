@@ -12,43 +12,43 @@ const openai = new OpenAI({
 });
 
 export const createPersonalMeditation = async () => {
-  const { getUser } = getKindeServerSession();
-  const user = await getUser();
-  console.log({ openaikey: process.env.OPENAI_API_KEY });
-  console.log({ aws: process.env.AWS_S3_ACCESS_KEY });
+  try {
+    const { getUser } = getKindeServerSession();
+    const user = await getUser();
+    console.log({ openaikey: process.env.OPENAI_API_KEY });
+    console.log({ aws: process.env.AWS_S3_ACCESS_KEY });
 
-  if (!user) {
-    throw new Error("User not found");
-  }
+    if (!user) {
+      throw new Error("User not found");
+    }
 
-  const dbUser = await prisma.user.findUnique({
-    where: {
-      id: user.id,
-    },
-    select: {
-      messages: {
-        where: {
-          isKaiMessage: false,
-        },
-        select: {
-          text: true,
+    const dbUser = await prisma.user.findUnique({
+      where: {
+        id: user.id,
+      },
+      select: {
+        messages: {
+          where: {
+            isKaiMessage: false,
+          },
+          select: {
+            text: true,
+          },
         },
       },
-    },
-  });
+    });
 
-  if (!dbUser) {
-    throw new Error("User not found in database");
-  }
+    if (!dbUser) {
+      throw new Error("User not found in database");
+    }
 
-  console.log({ messages: dbUser!.messages });
+    console.log({ messages: dbUser!.messages });
 
-  const userInfo = dbUser.messages.map((msg) => msg.text).join(". ") + ".";
+    const userInfo = dbUser.messages.map((msg) => msg.text).join(". ") + ".";
 
-  const instrucciones = CREATE_PROMPT_AUDIO();
+    const instrucciones = CREATE_PROMPT_AUDIO();
 
-  let promptResponse;
-  try {
+    let promptResponse;
     promptResponse = await openai.chat.completions.create({
       messages: [
         {
@@ -96,10 +96,10 @@ export const createPersonalMeditation = async () => {
       },
     });
 
+    revalidatePath("/dashboard/meditation");
     return url;
   } catch (error) {
     console.error("Error creating personal meditation:", error);
     throw error;
   }
 };
-revalidatePath("/dashboard/meditation");
