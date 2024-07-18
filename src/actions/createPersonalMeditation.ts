@@ -14,6 +14,8 @@ const openai = new OpenAI({
 export const createPersonalMeditation = async () => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
+  console.log({ openaikey: process.env.OPENAI_API_KEY });
+  console.log({ aws: process.env.AWS_S3_ACCESS_KEY });
 
   if (!user) {
     throw new Error("User not found");
