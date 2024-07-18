@@ -15,10 +15,6 @@ import { Play } from "lucide-react";
 import { AlertCrateMeditation } from "@/components/alert/AlertDialog";
 import { cn } from "@/utils/cn";
 
-export const getName = (userId: string) => {
-  if (!userId) throw Error("user id is required");
-};
-
 export function MyMeditations() {
   const setActiveAudio = useAudioStore((store) => store.setActiveAudio);
   const userMeditations = useAudioStore((store) => store.audios);

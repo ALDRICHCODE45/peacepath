@@ -27,7 +27,9 @@ export function AlertCrateMeditation() {
       const newAudioParams = {
         url: resp,
       };
+      console.log({ newAudioParams });
       addNewAudio(newAudioParams);
+      console.log({ msg: "AlertDialog" });
       console.log({ resp });
       setIsLoading(false);
     } catch (err) {
