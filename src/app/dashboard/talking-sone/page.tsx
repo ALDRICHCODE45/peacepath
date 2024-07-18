@@ -7,9 +7,11 @@ import { unstable_noStore as noSotore } from "next/cache";
 export const metadata: Metadata = {
   title: "Peace Path - Talking Sone",
 };
-export default async function Page() {
+
+const getData = async () => {
   noSotore();
   const { getUser } = getKindeServerSession();
+
   const user = await getUser();
 
   if (!user) {
@@ -22,11 +24,15 @@ export default async function Page() {
     },
   });
 
-  const initialMessages = mensajes.map((message) => ({
+  return mensajes.map((message) => ({
     id: message.id,
     text: message.text,
     isKaiMessage: message.isKaiMessage,
   }));
+};
+
+export default async function Page() {
+  const initialMessages = await getData();
 
   return (
     <>

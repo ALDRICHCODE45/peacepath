@@ -19,7 +19,6 @@ const getUserAudios = async () => {
       url: true,
     },
   });
-  console.log(userAudios, "page");
   return userAudios;
 };
 
