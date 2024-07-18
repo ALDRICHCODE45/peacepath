@@ -34,11 +34,12 @@ export const createPersonalMeditation = async () => {
       },
     },
   });
-  console.log({ dbUser });
 
   if (!dbUser) {
     throw new Error("User not found in database");
   }
+
+  console.log({ messages: dbUser!.messages });
 
   const userInfo = dbUser.messages.map((msg) => msg.text).join(". ") + ".";
 
