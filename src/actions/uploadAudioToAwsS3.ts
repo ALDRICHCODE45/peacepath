@@ -13,19 +13,14 @@ const s3 = new S3Client({
 });
 
 export const uploadFileToS3 = async (audioBuffer: Buffer, fileName: string) => {
-  try {
-    console.log("uploaded file");
-    const params: PutObjectCommandInput = {
-      Bucket: process.env.AWS_S3_BUCKET_NAME,
-      Key: `myfolder/${fileName}`,
-      Body: audioBuffer,
-      ContentType: "audio/mpeg",
-    };
-    const command = new PutObjectCommand(params);
-    const data = await s3.send(command);
-    console.log("Successfully uploaded audio file:", data);
-  } catch (err) {
-    console.error("Error uploading audio file:", err);
-    throw err;
-  }
+  console.log("uploaded file");
+  const params: PutObjectCommandInput = {
+    Bucket: process.env.AWS_S3_BUCKET_NAME,
+    Key: `myfolder/${fileName}`,
+    Body: audioBuffer,
+    ContentType: "audio/mpeg",
+  };
+  const command = new PutObjectCommand(params);
+  const data = await s3.send(command);
+  console.log("Successfully uploaded audio file:", data);
 };
