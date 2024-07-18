@@ -43,98 +43,94 @@ export async function submitMessage(question: string) {
   const runQueue = [];
 
   (async () => {
-    if (thread_id != null) {
-      const newMessage = await openai.beta.threads.messages.create(thread_id, {
-        role: "user",
-        content: question,
-      });
-      await prisma.message.create({
-        data: {
-          text: question,
-          userId: dbUser!.id,
-          isKaiMessage: false,
-        },
-      });
-      //todo:guardar el mensaje del usuario en db
-      console.log({ newMessage, on: "if" });
+    try {
+      let threadId = thread_id;
 
-      const run = await openai.beta.threads.runs.create(thread_id, {
+      if (thread_id != null) {
+        const newMessage = await openai.beta.threads.messages.create(
+          thread_id,
+          {
+            role: "user",
+            content: question,
+          }
+        );
+        await prisma.message.create({
+          data: {
+            text: question,
+            userId: dbUser!.id,
+            isKaiMessage: false,
+          },
+        });
+        console.log({ newMessage, on: "if" });
+      } else {
+        const thread = await openai.beta.threads.create();
+        await prisma.user.update({
+          where: {
+            id: user.id,
+          },
+          data: {
+            thread_id: thread.id,
+          },
+        });
+        threadId = thread.id;
+        console.log({ thread, on: "else" });
+
+        const message = await openai.beta.threads.messages.create(thread.id, {
+          role: "user",
+          content: question,
+        });
+        await prisma.message.create({
+          data: {
+            text: question,
+            userId: dbUser!.id,
+            isKaiMessage: false,
+          },
+        });
+        console.log({ message, on: "else" });
+      }
+
+      const run = await openai.beta.threads.runs.create(threadId!, {
         assistant_id: ASSISTANT_ID,
         stream: true,
       });
 
       runQueue.push({ id: generateId(), run });
-      console.log({ run });
-    } else {
-      const thread = await openai.beta.threads.create();
-      //actualizar el thread del usuario.
-      await prisma.user.update({
-        where: {
-          id: user.id,
-        },
-        data: {
-          thread_id: thread.id,
-        },
-      });
-      console.log({ thread, on: "else" });
 
-      const message = await openai.beta.threads.messages.create(thread.id, {
-        role: "user",
-        content: question,
-      });
-      //actualizar el mensaje del usuario
-      await prisma.message.create({
-        data: {
-          text: question,
-          userId: dbUser!.id,
-          isKaiMessage: false,
-        },
-      });
+      let finalKaiText = "";
 
-      console.log({ message, on: "else" });
+      while (runQueue.length > 0) {
+        const latestRun = runQueue.shift();
 
-      const run = await openai.beta.threads.runs.create(thread.id, {
-        assistant_id: ASSISTANT_ID,
-        stream: true,
-      });
-
-      runQueue.push({ id: generateId(), run });
-    }
-    let finalKaiText: string = "";
-
-    while (runQueue.length > 0) {
-      const latestRun = runQueue.shift();
-
-      if (latestRun) {
-        for await (const delta of latestRun.run) {
-          const { data, event } = delta;
-          if (event === "thread.message.delta") {
-            data.delta.content?.map((part) => {
-              if (part.type === "text") {
-                if (part.text) {
+        if (latestRun) {
+          for await (const delta of latestRun.run) {
+            const { data, event } = delta;
+            if (event === "thread.message.delta") {
+              data.delta.content?.map((part) => {
+                if (part.type === "text" && part.text) {
                   finalKaiText += part.text.value;
                   textStream.append(part.text.value as string);
                 }
-              }
-            });
-            textStream.done();
-          } else if (event === "thread.run.failed") {
-            console.error(data);
+              });
+            } else if (event === "thread.run.failed") {
+              console.error(data);
+            }
           }
         }
       }
+
+      textStream.done();
+
+      await prisma.message.create({
+        data: {
+          text: finalKaiText,
+          userId: dbUser!.id,
+          isKaiMessage: true,
+        },
+      });
+    } catch (error) {
+      console.error("Error processing message:", error);
+      textStream.done();
     }
-
-    //todo: guardar en db el mensaje de Kai
-
-    //guardar en db el mensaje de Kai
-    await prisma.message.create({
-      data: {
-        text: finalKaiText,
-        userId: dbUser!.id,
-        isKaiMessage: true,
-      },
-    });
   })();
 
   return {
