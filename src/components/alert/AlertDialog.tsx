@@ -28,6 +28,7 @@ export function AlertCrateMeditation() {
         url: resp,
       };
       addNewAudio(newAudioParams);
+      console.log({ resp });
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
