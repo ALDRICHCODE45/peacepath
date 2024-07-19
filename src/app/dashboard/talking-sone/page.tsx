@@ -4,6 +4,8 @@ import prisma from "@/app/lib/db";
 import { Metadata } from "next";
 import { unstable_noStore as noSotore } from "next/cache";
 
+export const maxDuration = 60;
+
 export const metadata: Metadata = {
   title: "Peace Path - Talking Sone",
 };
