@@ -12,15 +12,15 @@ interface Props {
 
 export default function Reproductor({ initialAudios = [] }: Props) {
   const [loaded, setLoaded] = useState<boolean>(false);
-
-  useAudioStore((store) => store.setUserAudios)(initialAudios);
+  const setUserAudios = useAudioStore((store) => store.setUserAudios);
   const activeAudio = useAudioStore((store) => store.activeAudio);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
 
   useEffect(() => {
+    setUserAudios(initialAudios);
     setLoaded(true);
-  }, []);
+  }, [initialAudios, setUserAudios]);
 
   useEffect(() => {
     if (activeAudio) {
@@ -32,7 +32,7 @@ export default function Reproductor({ initialAudios = [] }: Props) {
       const newAudio = new Audio(activeAudio);
       setAudio(newAudio);
     }
-  }, [activeAudio, audio]);
+  }, [activeAudio]);
 
   if (!loaded) {
     return <h1>Loading..</h1>;
@@ -50,7 +50,7 @@ export default function Reproductor({ initialAudios = [] }: Props) {
   };
 
   return (
-    <div className="animate__animated  animate__fadeInDown">
+    <div className="animate__animated animate__fadeInDown">
       <MyMeditations />
       <div className="grid grid-cols-1 gap-8 p-4">
         <div className="flex justify-center items-center flex-col">
