@@ -1,3 +1,4 @@
+"use server";
 import {
   S3Client,
   PutObjectCommand,
@@ -12,7 +13,10 @@ const s3 = new S3Client({
   },
 });
 
-export const uploadFileToS3 = async (audioBuffer: Buffer, fileName: string) => {
+export const uploadFileToS3 = async (
+  audioBuffer: Buffer,
+  fileName: string
+): Promise<void> => {
   console.log("uploaded file");
   const params: PutObjectCommandInput = {
     Bucket: process.env.AWS_S3_BUCKET_NAME,
