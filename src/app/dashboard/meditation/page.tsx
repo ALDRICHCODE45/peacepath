@@ -4,6 +4,8 @@ import Reproductor from "./ui/Reproductor";
 import { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
 
+export const maxDuration = 300;
+
 export const metadata: Metadata = {
   title: "Peace Path - Personal Meditations",
 };
