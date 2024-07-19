@@ -1,4 +1,3 @@
-export const maxDuration = 60;
 import { NextResponse } from "next/server";
 import {
   S3Client,
@@ -6,15 +5,14 @@ import {
   PutObjectCommandInput,
 } from "@aws-sdk/client-s3";
 
-const s3 = new S3Client({
-  region: process.env.AWS_S3_REGION ?? "",
-  credentials: {
-    accessKeyId: process.env.AWS_S3_ACCESS_KEY ?? "",
-    secretAccessKey: process.env.AWS_S3_SECRET_KEY ?? "",
-  },
-});
-
 export async function POST(request: Request) {
+  const s3 = new S3Client({
+    region: process.env.AWS_S3_REGION ?? "",
+    credentials: {
+      accessKeyId: process.env.AWS_S3_ACCESS_KEY ?? "",
+      secretAccessKey: process.env.AWS_S3_SECRET_KEY ?? "",
+    },
+  });
   try {
     // Obtener el buffer de audio y el nombre del archivo desde el cuerpo de la solicitud
     const { audioBuffer, fileName }: { audioBuffer: Buffer; fileName: string } =
