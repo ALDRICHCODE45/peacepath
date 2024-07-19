@@ -1,3 +1,4 @@
+"use server";
 // app/actions/createPersonalMeditation.ts
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { OpenAI } from "openai";
