@@ -104,4 +104,3 @@ export const createPersonalMeditation = async (): Promise<string> => {
 
   return url;
 };
-revalidatePath("/dashboard/meditation");
