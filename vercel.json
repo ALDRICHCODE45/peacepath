@@ -1,8 +1,0 @@
-{
-  "version": 2,
-  "functions": {
-    "app/dashboard/api/route.ts": {
-      "maxDuration": 40
-    }
-  }
-}
