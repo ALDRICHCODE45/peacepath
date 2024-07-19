@@ -72,16 +72,19 @@ const uploadFileToS3ViaAPI = async (
   fileName: string
 ): Promise<void> => {
   try {
-    const response = await fetch("app/api/uploadFileToS3", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        audioBuffer: audioBuffer.toString("base64"), // Convert Buffer to base64 for JSON
-        fileName,
-      }),
-    });
+    const response = await fetch(
+      "https://peacepath.vercel.app/app/api/uploadFileToS3",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          audioBuffer: audioBuffer.toString("base64"), // Convert Buffer to base64 for JSON
+          fileName,
+        }),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`Failed to upload file: ${response.statusText}`);
