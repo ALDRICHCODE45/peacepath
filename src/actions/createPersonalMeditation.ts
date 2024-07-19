@@ -102,6 +102,6 @@ export const createPersonalMeditation = async (): Promise<string> => {
   const url =
     "https://kia-audios.s3.amazonaws.com/myfolder/personal_meditation-2lAsUsx-kp_48f079fa545641aaa9ba8a96f0b7ca10";
 
-  revalidatePath("/dashboard/meditation");
   return url;
 };
+revalidatePath("/dashboard/meditation");
