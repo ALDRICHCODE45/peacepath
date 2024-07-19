@@ -29,5 +29,5 @@ export async function GET() {
       },
     });
   }
-  return NextResponse.redirect("http://localhost:3000/peachepath/home");
+  return NextResponse.redirect("https://peacepath.vercel.app/home");
 }
