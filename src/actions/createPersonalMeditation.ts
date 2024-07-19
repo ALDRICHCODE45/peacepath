@@ -1,5 +1,4 @@
 "use server";
-// app/actions/createPersonalMeditation.ts
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { OpenAI } from "openai";
 import { generateId } from "ai";
@@ -72,31 +71,6 @@ const generateAudio = async (text: string): Promise<Buffer> => {
   return Buffer.from(await mp3.arrayBuffer());
 };
 
-const uploadFileToS3ViaAPI = async (
-  audioBuffer: Buffer,
-  fileName: string
-): Promise<void> => {
-  try {
-    const response = await fetch("app/api/uploadFileToS3", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        audioBuffer: audioBuffer.toString("base64"), // Convert Buffer to base64 for JSON
-        fileName,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to upload file: ${response.statusText}`);
-    }
-  } catch (error) {
-    console.error("Error uploading file via API:", error);
-    throw error;
-  }
-};
-
 const s3 = new S3Client({
   region: process.env.AWS_S3_REGION ?? "",
   credentials: {
@@ -127,8 +101,6 @@ export const createPersonalMeditation = async (): Promise<string> => {
     user.id
   }`;
 
-  // Llamar a la API route para subir el archivo
-  // await uploadFileToS3ViaAPI(buffer, fileName);
   const params: PutObjectCommandInput = {
     Bucket: process.env.AWS_S3_BUCKET_NAME,
     Key: `myfolder/${fileName}`,
