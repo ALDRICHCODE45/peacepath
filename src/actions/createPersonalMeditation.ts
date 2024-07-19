@@ -3,7 +3,6 @@ import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { OpenAI } from "openai";
 import { generateId } from "ai";
 import { uploadFileToS3 } from "@/actions/uploadAudioToAwsS3";
-import { revalidatePath } from "next/cache";
 import prisma from "@/app/lib/db";
 import { PROMPT } from "@/app/dashboard/meditation/prompt";
 
@@ -69,38 +68,36 @@ const generateAudio = async (text: string): Promise<Buffer> => {
 };
 
 export const createPersonalMeditation = async (): Promise<string> => {
-  // const { getUser } = getKindeServerSession();
-  // const user = await getUser();
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
 
-  // if (!user) {
-  //   throw new Error("User not found");
-  // }
+  if (!user) {
+    throw new Error("User not found");
+  }
 
-  // const dbUser = await getUserData(user.id);
+  const dbUser = await getUserData(user.id);
 
-  // if (!dbUser) {
-  //   throw new Error("User not found in database");
-  // }
+  if (!dbUser) {
+    throw new Error("User not found in database");
+  }
 
-  // const userInfo = dbUser.messages.map((msg) => msg.text).join(". ") + ".";
-  // const generatedText = await generatePromptResponse(userInfo);
-  // const buffer = await generateAudio(generatedText);
+  const userInfo = dbUser.messages.map((msg) => msg.text).join(". ") + ".";
+  const generatedText = await generatePromptResponse(userInfo);
+  const buffer = await generateAudio(generatedText);
 
-  // const fileName = `personal_meditation-${user.given_name}-${generateId()}-${
-  //   user.id
-  // }`;
-  // await uploadFileToS3(buffer, fileName);
+  const fileName = `personal_meditation-${user.given_name}-${generateId()}-${
+    user.id
+  }`;
+  await uploadFileToS3(buffer, fileName);
 
-  // const url = `https://kia-audios.s3.amazonaws.com/myfolder/${fileName}`;
+  const url = `https://kia-audios.s3.amazonaws.com/myfolder/${fileName}`;
 
-  // await prisma.audio.create({
-  //   data: {
-  //     url,
-  //     userId: user.id,
-  //   },
-  // });
-  const url =
-    "https://kia-audios.s3.amazonaws.com/myfolder/personal_meditation-2lAsUsx-kp_48f079fa545641aaa9ba8a96f0b7ca10";
+  await prisma.audio.create({
+    data: {
+      url,
+      userId: user.id,
+    },
+  });
 
   return url;
 };
