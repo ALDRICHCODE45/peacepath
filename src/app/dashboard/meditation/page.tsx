@@ -19,6 +19,7 @@ const getUserAudios = async () => {
       url: true,
     },
   });
+  console.log({ userAudios });
   return userAudios;
 };
 
