@@ -5,6 +5,11 @@ import { OpenAI } from "openai";
 import { generateId } from "ai";
 import prisma from "@/app/lib/db";
 import { PROMPT } from "@/app/dashboard/meditation/prompt";
+import {
+  PutObjectCommand,
+  PutObjectCommandInput,
+  S3Client,
+} from "@aws-sdk/client-s3";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -92,6 +97,14 @@ const uploadFileToS3ViaAPI = async (
   }
 };
 
+const s3 = new S3Client({
+  region: process.env.AWS_S3_REGION ?? "",
+  credentials: {
+    accessKeyId: process.env.AWS_S3_ACCESS_KEY ?? "",
+    secretAccessKey: process.env.AWS_S3_SECRET_KEY ?? "",
+  },
+});
+
 export const createPersonalMeditation = async (): Promise<string> => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
@@ -115,7 +128,16 @@ export const createPersonalMeditation = async (): Promise<string> => {
   }`;
 
   // Llamar a la API route para subir el archivo
-  await uploadFileToS3ViaAPI(buffer, fileName);
+  // await uploadFileToS3ViaAPI(buffer, fileName);
+  const params: PutObjectCommandInput = {
+    Bucket: process.env.AWS_S3_BUCKET_NAME,
+    Key: `myfolder/${fileName}`,
+    Body: buffer,
+    ContentType: "audio/mpeg",
+  };
+  const command = new PutObjectCommand(params);
+  const data = await s3.send(command);
+  console.log("Successfully uploaded audio file:", data);
 
   const url = `https://kia-audios.s3.amazonaws.com/myfolder/${fileName}`;
 
