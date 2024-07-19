@@ -72,7 +72,7 @@ const uploadFileToS3ViaAPI = async (
   fileName: string
 ): Promise<void> => {
   try {
-    const response = await fetch("app/dashboard/api/uploadFiletoS3", {
+    const response = await fetch("app/api/uploadFileToS3", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
