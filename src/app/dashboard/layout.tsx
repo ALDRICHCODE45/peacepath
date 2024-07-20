@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Peace Path",
@@ -31,6 +32,7 @@ export default async function MainLayout({
       defaultTheme="light"
       disableTransitionOnChange
     >
+      <Toaster />
       <div className="flex min-h-screen w-full">
         <aside className="border-r dark:border-[#363b3d] bg-muted/40 p-4 sm:p-6 bg-white dark:bg-[#181a1b] min-w-[250px]">
           <div className="flex flex-col items-center gap-6">

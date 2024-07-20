@@ -10,6 +10,7 @@ import {
   S3Client,
 } from "@aws-sdk/client-s3";
 import { revalidatePath } from "next/cache";
+import { isNullOrUndefined } from "util";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -21,6 +22,13 @@ interface Message {
 
 interface DBUser {
   messages: Message[];
+}
+interface Error {
+  message: string;
+}
+interface Response {
+  url?: string | null;
+  error?: Error | null;
 }
 
 const getUserData = async (userId: string): Promise<DBUser | null> => {
@@ -80,50 +88,76 @@ const s3 = new S3Client({
   },
 });
 
-export const createPersonalMeditation = async (): Promise<string> => {
+export const createPersonalMeditation = async (): Promise<Response> => {
   const { getUser } = getKindeServerSession();
   const user = await getUser();
 
   if (!user) {
-    throw new Error("User not found");
+    return {
+      url: null,
+      error: {
+        message: "user session not found",
+      },
+    };
   }
 
   const dbUser = await getUserData(user.id);
 
   if (!dbUser) {
-    throw new Error("User not found in database");
+    return {
+      url: null,
+      error: {
+        message: "user not found in Db",
+      },
+    };
   }
   if (dbUser.messages.length < 3) {
-    throw new Error("User have not enought messages");
+    return {
+      url: null,
+      error: {
+        message: "user do not have enought messages with kai",
+      },
+    };
   }
+  try {
+    const userInfo = dbUser.messages.map((msg) => msg.text).join(". ") + ".";
+    const generatedText = await generatePromptResponse(userInfo);
+    const buffer = await generateAudio(generatedText);
 
-  const userInfo = dbUser.messages.map((msg) => msg.text).join(". ") + ".";
-  const generatedText = await generatePromptResponse(userInfo);
-  const buffer = await generateAudio(generatedText);
+    const fileName = `personal_meditation-${user.given_name}-${generateId()}-${
+      user.id
+    }`;
 
-  const fileName = `personal_meditation-${user.given_name}-${generateId()}-${
-    user.id
-  }`;
+    const params: PutObjectCommandInput = {
+      Bucket: process.env.AWS_S3_BUCKET_NAME,
+      Key: `myfolder/${fileName}`,
+      Body: buffer,
+      ContentType: "audio/mpeg",
+    };
+    const command = new PutObjectCommand(params);
+    await s3.send(command);
 
-  const params: PutObjectCommandInput = {
-    Bucket: process.env.AWS_S3_BUCKET_NAME,
-    Key: `myfolder/${fileName}`,
-    Body: buffer,
-    ContentType: "audio/mpeg",
-  };
-  const command = new PutObjectCommand(params);
-  const data = await s3.send(command);
-  console.log("Successfully uploaded audio file:", data);
+    const url = `https://kia-audios.s3.amazonaws.com/myfolder/${fileName}`;
 
-  const url = `https://kia-audios.s3.amazonaws.com/myfolder/${fileName}`;
+    await prisma.audio.create({
+      data: {
+        url,
+        userId: user.id,
+      },
+    });
 
-  await prisma.audio.create({
-    data: {
+    revalidatePath("/dashboard/meditation");
+    return {
       url,
-      userId: user.id,
-    },
-  });
-
-  revalidatePath("/dashboard/meditation");
-  return url;
+      error: null,
+    };
+  } catch (e) {
+    /* handle error */
+    return {
+      url: null,
+      error: {
+        message: "something went wrong",
+      },
+    };
+  }
 };
