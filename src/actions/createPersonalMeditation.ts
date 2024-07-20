@@ -114,7 +114,7 @@ export const createPersonalMeditation = async (): Promise<Response> => {
     return {
       url: null,
       error: {
-        message: "user do not have enought messages with kai",
+        message: "you dont have enough messages with kai",
       },
     };
   }
