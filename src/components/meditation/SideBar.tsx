@@ -34,17 +34,17 @@ export function SideBar({ username }: SideBarProps): ReactElement {
       <div className="grid gap-4">
         <OptionLink
           href="/dashboard/talking-sone"
-          icon={<BubbleChatIcon />}
+          icon={<BubbleChatIcon className="text-black dark:text-white" />}
           label="Talking sone"
         />
         <OptionLink
           href="/dashboard/meditation"
-          icon={<HealtcareIcon />}
+          icon={<HealtcareIcon className="text-black dark:text-white" />}
           label="Meditation"
         />
         <OptionLink
           href="/dashboard/challenges"
-          icon={<ChartIcon />}
+          icon={<ChartIcon className="text-black dark:text-white" />}
           label="Challenges"
         />
       </div>
