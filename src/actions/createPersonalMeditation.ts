@@ -93,7 +93,7 @@ export const createPersonalMeditation = async (): Promise<string> => {
   if (!dbUser) {
     throw new Error("User not found in database");
   }
-  if (!dbUser.messages.length) {
+  if (dbUser.messages.length < 3) {
     throw new Error("User have not enought messages");
   }
 
