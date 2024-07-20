@@ -10,7 +10,6 @@ import {
   S3Client,
 } from "@aws-sdk/client-s3";
 import { revalidatePath } from "next/cache";
-import { isNullOrUndefined } from "util";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -23,7 +22,7 @@ interface Message {
 interface DBUser {
   messages: Message[];
 }
-interface Error {
+export interface Error {
   message: string;
 }
 interface Response {

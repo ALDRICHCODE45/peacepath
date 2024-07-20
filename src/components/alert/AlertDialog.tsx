@@ -1,5 +1,8 @@
 "use client";
-import { createPersonalMeditation } from "@/actions/createPersonalMeditation";
+import {
+  createPersonalMeditation,
+  Error,
+} from "@/actions/createPersonalMeditation";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,7 +23,7 @@ import { useToast } from "../ui/use-toast";
 export function AlertCrateMeditation() {
   const addNewAudio = useAudioStore((store) => store.addAudio);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<any>(null);
+  const [error, setError] = useState<Error | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -29,9 +32,10 @@ export function AlertCrateMeditation() {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request.",
+        description: error.message,
         //action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
+      setIsLoading(false);
     }
   }, [error]);
 
