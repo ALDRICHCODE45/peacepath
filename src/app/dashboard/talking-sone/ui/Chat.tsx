@@ -73,8 +73,8 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
       <div className="sticky bottom-0 w-full bg-white dark:bg-[#181a1b] p-4 border-t">
         <div className="flex items-center gap-4">
           <Input
-            placeholder="Type your message..."
-            className="flex-grow dark:bg-white bg-white text-black"
+            placeholder="Type your fellings..."
+            className="flex-grow dark:bg-[#27272a] bg-white text-black"
             value={input}
             onChange={(event) => setInput(event.target.value)}
             onKeyDown={(event) => {
@@ -83,7 +83,9 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
               }
             }}
           />
-          <Button onClick={handleSubmission}>Send</Button>
+          <Button variant="dark" onClick={handleSubmission}>
+            Send
+          </Button>
         </div>
       </div>
     </div>
