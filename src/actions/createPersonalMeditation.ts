@@ -9,6 +9,7 @@ import {
   PutObjectCommandInput,
   S3Client,
 } from "@aws-sdk/client-s3";
+import { revalidatePath } from "next/cache";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -92,6 +93,9 @@ export const createPersonalMeditation = async (): Promise<string> => {
   if (!dbUser) {
     throw new Error("User not found in database");
   }
+  if (!dbUser.messages.length) {
+    throw new Error("User have not enought messages");
+  }
 
   const userInfo = dbUser.messages.map((msg) => msg.text).join(". ") + ".";
   const generatedText = await generatePromptResponse(userInfo);
@@ -120,5 +124,6 @@ export const createPersonalMeditation = async (): Promise<string> => {
     },
   });
 
+  revalidatePath("/dashboard/meditation");
   return url;
 };
