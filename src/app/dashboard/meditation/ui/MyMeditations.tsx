@@ -48,13 +48,16 @@ export function MyMeditations() {
               key={meditation.url}
             >
               <div className="flex items-center">
-                <Button
-                  variant="outline"
-                  onClick={() => setActiveAudio(meditation.url)}
-                  className="mr-2"
-                >
-                  <Play />
-                </Button>
+                <SheetClose asChild>
+                  <Button
+                    variant="outline"
+                    onClick={() => setActiveAudio(meditation.url)}
+                    className="mr-2"
+                  >
+                    <Play />
+                  </Button>
+                </SheetClose>
+
                 <span className="font-normal text-black">Meditation</span>
               </div>
             </div>
