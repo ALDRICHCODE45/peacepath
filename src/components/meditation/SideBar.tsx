@@ -14,7 +14,7 @@ export interface SideBarProps {
 }
 const Items = [
   {
-    href: "/dashboard/talking-sone",
+    href: "/dashboard/talking-zone",
     icon: <BubbleChatIcon className="text-black dark:text-white" />,
     label: "Talking sone",
   },
