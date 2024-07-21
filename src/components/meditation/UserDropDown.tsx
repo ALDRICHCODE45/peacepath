@@ -22,7 +22,7 @@ export function UserDropDown({ image }: UserDropDownProps): ReactElement {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <div className="rounded-full border px-2 py-2 lg:px-4 lg:py-2 flex items-center gap-x-3">
-          <MenuIcon className="w-6 h-6 lg:w-5 lg:h-6" />
+          <MenuIcon className="w-6 h-6 lg:w-5 lg:h-6 text-black dark:text-white" />
           <Image
             className="rounded-full h-8 w-8 hidden lg:block"
             src={imageToShow}
