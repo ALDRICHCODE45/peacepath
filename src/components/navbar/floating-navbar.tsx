@@ -32,7 +32,7 @@ export const FloatingNav = async () => {
               "border text-sm font-medium relative border-white/[0.2] text-white px-4 py-2 rounded-full"
             )}
           >
-            <span className="hidden sm:block text-sm">Sign in</span>
+            <span className="block text-sm">Sign in</span>
             <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
           </LoginLink>
 
@@ -41,7 +41,7 @@ export const FloatingNav = async () => {
               "border text-sm font-medium relative border-white/[0.2] text-white px-4 py-2 rounded-full"
             }
           >
-            <span className="hidden sm:block text-sm">Sign up</span>
+            <span className="block text-sm">Sign up</span>
             <span className="absolute inset-x-0 w-1/2 mx-auto -bottom-px bg-gradient-to-r from-transparent via-blue-500 to-transparent  h-px" />
           </RegisterLink>
         </>
