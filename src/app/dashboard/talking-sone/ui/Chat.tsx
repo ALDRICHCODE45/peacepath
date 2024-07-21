@@ -70,7 +70,7 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
         )}
         <div ref={messagesEndRef} />
       </div>
-      <div className="sticky bottom-0 w-full bg-white dark:bg-[#181a1b] p-4 border-t">
+      <div className="sticky bottom-0 w-full bg-white dark:bg-[#181a1b] p-4 border-t-[#363b3d]">
         <div className="flex items-center gap-4">
           <Input
             placeholder="Type your fellings..."
