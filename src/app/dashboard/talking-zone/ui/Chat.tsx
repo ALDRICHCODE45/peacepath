@@ -74,7 +74,7 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
         <div className="flex items-center gap-4">
           <Input
             placeholder="Type your feelings..."
-            className="flex-grow dark:bg-[#27272a] bg-white text-black"
+            className="flex-grow dark:bg-[#27272a] bg-white text-black dark:text-white"
             value={input}
             onChange={(event) => setInput(event.target.value)}
             onKeyDown={(event) => {
