@@ -53,7 +53,9 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
   return (
     <div className="flex flex-col h-full md:h-[calc(100vh-150px)]">
       <div className="flex-grow p-4 overflow-y-scroll">
-        <KaiMessage text="Hola Mi nombre es Kai, este es un espacio seguro en el que puedes decir todo lo que quieras y yo trataré de brindarte consuelo" />
+        <div className="pb-5">
+          <KaiMessage text="Hola Mi nombre es Kai, este es un espacio seguro en el que puedes decir todo lo que quieras y yo trataré de brindarte consuelo" />
+        </div>
         <Image
           src="/koala_message.jpg"
           className="md:ml-[72px] rounded-xl"
