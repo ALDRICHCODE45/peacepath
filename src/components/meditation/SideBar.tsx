@@ -32,7 +32,7 @@ const Items = [
 
 export function SideBar({ username }: SideBarProps): ReactElement {
   return (
-    <aside className="border-r dark:border-[#363b3d] bg-muted/40 p-4 sm:p-6 bg-white dark:bg-[#181a1b] min-w-[250px]">
+    <aside className="sm:border-r dark:border-[#363b3d] sm:bg-muted/40 p-4 sm:p-6 sm:bg-white dark:bg-[#181a1b] md:min-w-[250px] hidden ">
       <div className="flex flex-col items-center gap-6">
         <div className="flex h-12 w-12 items-center justify-center rounded-full b text-lg font-semibold text-primary-foreground">
           <Link href="/">
