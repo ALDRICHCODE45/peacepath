@@ -11,16 +11,19 @@ export interface AudioState {
   activeAudio: string | null;
   setActiveAudio: (newUrl: string) => void;
   newAudio: (audio: AudioI) => void;
+  cleanActiveAudio: () => void;
 }
 
 export const useAudioStore = create<AudioState>()((set, get) => ({
   audios: [],
   activeAudio: null,
 
+  cleanActiveAudio() {
+    set({ activeAudio: null });
+  },
+
   setActiveAudio(newUrl: string) {
     set({ activeAudio: newUrl });
-    const { activeAudio } = get();
-    console.log(activeAudio);
   },
 
   addAudio(newAudio: AudioI) {

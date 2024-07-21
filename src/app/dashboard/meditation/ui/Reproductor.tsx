@@ -13,6 +13,8 @@ interface Props {
 export default function Reproductor({ initialAudios = [] }: Props) {
   const [loaded, setLoaded] = useState<boolean>(false);
   const setUserAudios = useAudioStore((store) => store.setUserAudios);
+  const cleanActiveAudio = useAudioStore((store) => store.cleanActiveAudio);
+
   const activeAudio = useAudioStore((store) => store.activeAudio);
   const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
@@ -31,8 +33,21 @@ export default function Reproductor({ initialAudios = [] }: Props) {
       }
       const newAudio = new Audio(activeAudio);
       setAudio(newAudio);
+
+      newAudio.addEventListener("ended", handleAudioEnded);
     }
+
+    return () => {
+      if (audio) {
+        audio.removeEventListener("ended", handleAudioEnded);
+      }
+    };
   }, [activeAudio]);
+
+  const handleAudioEnded = () => {
+    setIsPlaying(false);
+    cleanActiveAudio();
+  };
 
   if (!loaded) {
     return <h1>Loading...</h1>;
