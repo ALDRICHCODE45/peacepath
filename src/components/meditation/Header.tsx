@@ -22,7 +22,7 @@ export function Header({}: HeaderProps): ReactElement {
         </div>
         <div className="flex items-center gap-4">
           <ThemeToggle />
-          <div className="hidden sm:block">
+          <div className="block sm:hidden">
             <UserDropDown />
           </div>
         </div>
