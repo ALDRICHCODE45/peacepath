@@ -54,7 +54,7 @@ export function UserDropDown({ image }: UserDropDownProps): ReactElement {
         </DropdownMenuItem>
         <DropdownMenuItem>
           <Link href="/" className="w-full">
-            Log out
+            Home
           </Link>
         </DropdownMenuItem>
       </DropdownMenuContent>
