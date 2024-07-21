@@ -2,6 +2,7 @@ import { type ReactElement } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Badge } from "../ui/badge";
 import { ThemeToggle } from "../theme-toggle/ThemeToggle";
+import { UserDropDown } from "./UserDropDown";
 
 export interface HeaderProps {}
 
@@ -14,11 +15,14 @@ export function Header({}: HeaderProps): ReactElement {
           <AvatarFallback>CB</AvatarFallback>
         </Avatar>
         <div className="flex w-full justify-between">
-          <div className="">
+          <div>
             <p className="font-medium text-black dark:text-white">KAI</p>
             <Badge variant="success">Online</Badge>
           </div>
           <ThemeToggle />
+          <div className="justify-end hidden md:block">
+            <UserDropDown />
+          </div>
         </div>
       </div>
     </header>
