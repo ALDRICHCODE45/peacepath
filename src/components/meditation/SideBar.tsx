@@ -7,10 +7,28 @@ import {
   HealtcareIcon,
   UserIcon,
 } from "./icons/DasboardIcons";
+import { SideBarItem } from "./SideBarItem";
 
 export interface SideBarProps {
   username: string;
 }
+const Items = [
+  {
+    href: "/dashboard/talking-sone",
+    icon: <BubbleChatIcon className="text-black dark:text-white" />,
+    label: "Talking sone",
+  },
+  {
+    href: "/dashboard/meditation",
+    icon: <HealtcareIcon className="text-black dark:text-white" />,
+    label: "Meditation",
+  },
+  {
+    href: "/dashboard/challenges",
+    icon: <ChartIcon className="text-black dark:text-white" />,
+    label: "Challenges",
+  },
+];
 
 export function SideBar({ username }: SideBarProps): ReactElement {
   return (
@@ -32,42 +50,10 @@ export function SideBar({ username }: SideBarProps): ReactElement {
       <Separator className="my-6 " />
 
       <div className="grid gap-4">
-        <OptionLink
-          href="/dashboard/talking-sone"
-          icon={<BubbleChatIcon className="text-black dark:text-white" />}
-          label="Talking sone"
-        />
-        <OptionLink
-          href="/dashboard/meditation"
-          icon={<HealtcareIcon className="text-black dark:text-white" />}
-          label="Meditation"
-        />
-        <OptionLink
-          href="/dashboard/challenges"
-          icon={<ChartIcon className="text-black dark:text-white" />}
-          label="Challenges"
-        />
+        {Items.map((item) => (
+          <SideBarItem {...item} key={item.href} />
+        ))}
       </div>
     </aside>
-  );
-}
-export function OptionLink({
-  href,
-  icon,
-  label,
-}: {
-  href: string;
-  icon: React.ReactNode;
-  label: string;
-}) {
-  return (
-    <Link href={href}>
-      <span className="flex items-center gap-2 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition">
-        <div className="h-6 w-6 dark:text-white font-normal">{icon}</div>
-        <span className="text-sm font-medium text-black dark:text-white">
-          {label}
-        </span>
-      </span>
-    </Link>
   );
 }
