@@ -3,9 +3,9 @@ import { generateId } from "ai";
 import { createAI, createStreamableUI, createStreamableValue } from "ai/rsc";
 import { OpenAI } from "openai";
 import { ReactNode } from "react";
-import { Message } from "./dashboard/talking-sone/message";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import prisma from "./lib/db";
+import { Message } from "./dashboard/talking-zone/message";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
