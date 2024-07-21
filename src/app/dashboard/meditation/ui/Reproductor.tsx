@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Pause, Play, Music } from "lucide-react";
 import { AudioI, useAudioStore } from "@/store/audios.store";
 import { MyMeditations } from "./MyMeditations";
+import { MeditationLoading } from "@/components/loading/Loading";
 
 interface Props {
   initialAudios?: AudioI[];
@@ -50,7 +51,7 @@ export default function Reproductor({ initialAudios = [] }: Props) {
   };
 
   if (!loaded) {
-    return <h1>Loading...</h1>;
+    return <MeditationLoading />;
   }
 
   const togglePlay = () => {
