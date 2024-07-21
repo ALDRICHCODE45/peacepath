@@ -52,6 +52,11 @@ export function UserDropDown({ image }: UserDropDownProps): ReactElement {
         <DropdownMenuItem>
           <LogoutLink className="w-full">Log out</LogoutLink>
         </DropdownMenuItem>
+        <DropdownMenuItem>
+          <Link href="/" className="w-full">
+            Log out
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
