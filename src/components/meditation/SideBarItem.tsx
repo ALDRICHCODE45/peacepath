@@ -19,7 +19,7 @@ export function SideBarItem({
         className={cn(
           "flex items-center gap-2 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition",
           {
-            "bg-gray-700": pathName === href,
+            "bg-gray-200 dark:bg-gray-700": pathName === href,
           }
         )}
       >
