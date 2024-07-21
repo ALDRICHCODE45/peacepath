@@ -5,12 +5,19 @@ export interface LoadingProps {}
 
 export default function Loading({}: LoadingProps): ReactElement {
   return (
-    <div className="max-w-[1000px] mx-auto flex gap-x-10 mt-4 mb-10 ">
-      <div className="w-[65%] flex flex-col gap-y-5">
-        <Skeleton className="w-full h-[1000px]" />
+    <div className="flex flex-col h-full md:h-[calc(100vh-150px)]">
+      <div className="flex-grow p-4 overflow-y-scroll ">
+        <Skeleton className="w-full h-[60px] rounded-xl mb-4" />
+        <Skeleton className="md:ml-[72px] w-[250px] h-[250px] rounded-xl mb-4" />
+        <Skeleton className="w-full h-[60px] rounded-xl mb-4" />
+        <Skeleton className="w-full h-[60px] rounded-xl mb-4" />
+        <Skeleton className="w-full h-[60px] rounded-xl mb-4" />
       </div>
-      <div className="w-[35%] ">
-        <Skeleton className="w-full h-[300px]" />
+      <div className="sticky bottom-0 w-full bg-white dark:bg-[#181a1b] p-4 border-t dark:border-[#363b3d]">
+        <div className="flex items-center gap-4">
+          <Skeleton className="flex-grow h-[40px] rounded-lg dark:bg-[#27272a] bg-white text-black dark:text-white" />
+          <Skeleton className="w-[100px] h-[40px] rounded-lg" />
+        </div>
       </div>
     </div>
   );
