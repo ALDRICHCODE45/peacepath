@@ -32,10 +32,10 @@ export default function Reproductor({ initialAudios = [] }: Props) {
       const newAudio = new Audio(activeAudio);
       setAudio(newAudio);
     }
-  }, [activeAudio, audio]);
+  }, [activeAudio]);
 
   if (!loaded) {
-    return <h1>Loading..</h1>;
+    return <h1>Loading...</h1>;
   }
 
   const togglePlay = () => {
