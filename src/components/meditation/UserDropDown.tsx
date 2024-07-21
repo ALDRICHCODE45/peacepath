@@ -7,7 +7,7 @@ import {
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { MenuIcon } from "lucide-react";
-import DefaultUser from "/placeholder-user.png";
+import DefaultUser from "../../../public/placeholder-user.png";
 import Image from "next/image";
 import Link from "next/link";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
