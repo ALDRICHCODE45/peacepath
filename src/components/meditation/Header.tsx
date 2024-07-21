@@ -14,13 +14,13 @@ export function Header({}: HeaderProps): ReactElement {
           <AvatarImage src="/koala_profile.jpg" />
           <AvatarFallback>CB</AvatarFallback>
         </Avatar>
-        <div className="flex">
+        <div className="flex w-full">
           <div>
             <p className="font-medium text-black dark:text-white">KAI</p>
             <Badge variant="success">Online</Badge>
           </div>
           <ThemeToggle />
-          <div className="justify-end hidden md:block">
+          <div className="justify-end hidden sm:block">
             <UserDropDown />
           </div>
         </div>
