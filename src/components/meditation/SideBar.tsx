@@ -32,7 +32,7 @@ const Items = [
 
 export function SideBar({ username }: SideBarProps): ReactElement {
   return (
-    <aside className="sm:border-r dark:border-[#363b3d] sm:bg-muted/40 p-4 sm:p-6 sm:bg-white dark:bg-[#181a1b] md:min-w-[250px] hidden ">
+    <aside className="hidden md:block md:border-r dark:border-[#363b3d] md:bg-muted/40 p-4 sm:p-6 md:bg-white dark:bg-[#181a1b] md:min-w-[250px]">
       <div className="flex flex-col items-center gap-6">
         <div className="flex h-12 w-12 items-center justify-center rounded-full b text-lg font-semibold text-primary-foreground">
           <Link href="/">
@@ -47,8 +47,7 @@ export function SideBar({ username }: SideBarProps): ReactElement {
           </div>
         </div>
       </div>
-      <Separator className="my-6 " />
-
+      <Separator className="my-6" />
       <div className="grid gap-4">
         {Items.map((item) => (
           <SideBarItem {...item} key={item.href} />
