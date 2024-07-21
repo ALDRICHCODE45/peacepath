@@ -18,8 +18,10 @@ export function Header({}: HeaderProps): ReactElement {
             <Badge variant="success">Online</Badge>
           </Avatar>
         </div>
-        <div className="flex h-full">
-          <ThemeToggle />
+        <div className="flex h-full items-center">
+          <div>
+            <ThemeToggle />
+          </div>
           <div className="justify-end hidden sm:block ml-3">
             <UserDropDown />
           </div>
