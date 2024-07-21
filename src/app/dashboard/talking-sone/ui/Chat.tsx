@@ -51,9 +51,9 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
   };
 
   return (
-    <div className="flex flex-col  " style={{ height: "calc(100vh - 150px)" }}>
-      <div className="flex-grow p-4 overflow-y-scroll ">
-        <KaiMessage text="Hola Mi nombre es kai, este es un espacio seguro en el que puedes decir todo lo que quieras y yo tratare de brindarte consuelo" />
+    <div className="flex flex-col h-full md:h-[calc(100vh-150px)]">
+      <div className="flex-grow p-4 overflow-y-scroll">
+        <KaiMessage text="Hola Mi nombre es Kai, este es un espacio seguro en el que puedes decir todo lo que quieras y yo trataré de brindarte consuelo" />
         <Image
           src="/koala_message.jpg"
           className="ml-[72px] rounded-xl"
@@ -70,10 +70,10 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
         )}
         <div ref={messagesEndRef} />
       </div>
-      <div className="sticky bottom-0 w-full bg-white dark:bg-[#181a1b] p-4 border-t-[#363b3d]">
+      <div className="sticky bottom-0 w-full bg-white dark:bg-[#181a1b] p-4 border-t dark:border-[#363b3d]">
         <div className="flex items-center gap-4">
           <Input
-            placeholder="Type your fellings..."
+            placeholder="Type your feelings..."
             className="flex-grow dark:bg-[#27272a] bg-white text-black"
             value={input}
             onChange={(event) => setInput(event.target.value)}
