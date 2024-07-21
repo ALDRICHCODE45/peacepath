@@ -20,8 +20,8 @@ export const GoalCard = ({ icon, state, title }: Props) => {
             {title}
           </p>
           <Badge
-            variant="success"
-            className="text-black dark:text-[#e5e3df] border dark:border-[#363b3d] mt-2"
+            variant={state === "Unlocked" ? "success_badged" : "outline"}
+            className="text-black  border dark:border-[#363b3d] mt-2"
           >
             {state}
           </Badge>
