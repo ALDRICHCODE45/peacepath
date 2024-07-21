@@ -56,7 +56,7 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
         <KaiMessage text="Hola Mi nombre es Kai, este es un espacio seguro en el que puedes decir todo lo que quieras y yo trataré de brindarte consuelo" />
         <Image
           src="/koala_message.jpg"
-          className="ml-[72px] rounded-xl"
+          className="md:ml-[72px] rounded-xl"
           alt="koala_message"
           height={250}
           width={250}
