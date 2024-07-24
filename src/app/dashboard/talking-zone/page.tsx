@@ -38,9 +38,7 @@ export default async function Page() {
 
   return (
     <>
-      <main className="">
-        <Chat initialMessages={initialMessages} />
-      </main>
+      <Chat initialMessages={initialMessages} />
     </>
   );
 }
