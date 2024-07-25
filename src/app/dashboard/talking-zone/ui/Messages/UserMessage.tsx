@@ -1,4 +1,5 @@
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { UserIcon } from "@/components/meditation/icons/DasboardIcons";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 
 interface UserMessageProps {
   text: React.ReactNode;
@@ -11,7 +12,9 @@ export default function UserMessage({ text }: UserMessageProps) {
         <div>{text}</div>
       </div>
       <Avatar className="md:h-10 md:w-10 md:block hidden">
-        <AvatarImage src="/placeholder-user.png" />
+        <div className="rounded-lg">
+          <UserIcon className="text-black dark:text-white" />
+        </div>
         <AvatarFallback>US</AvatarFallback>
       </Avatar>
     </div>
