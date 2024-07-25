@@ -41,6 +41,8 @@ export default function Reproductor({ initialAudios = [] }: Props) {
     return () => {
       if (audio) {
         audio.removeEventListener("ended", handleAudioEnded);
+        setAudio(null);
+        cleanActiveAudio();
       }
     };
   }, [activeAudio]);
