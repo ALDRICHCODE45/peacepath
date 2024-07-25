@@ -1,5 +1,5 @@
 import { UserIcon } from "@/components/meditation/icons/DasboardIcons";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar } from "@/components/ui/avatar";
 
 interface UserMessageProps {
   text: React.ReactNode;
@@ -15,7 +15,6 @@ export default function UserMessage({ text }: UserMessageProps) {
         <div className="rounded-lg">
           <UserIcon className="text-black dark:text-white" />
         </div>
-        <AvatarFallback>US</AvatarFallback>
       </Avatar>
     </div>
   );
