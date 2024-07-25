@@ -12,7 +12,7 @@ export default function UserMessage({ text }: UserMessageProps) {
         <div>{text}</div>
       </div>
       <Avatar className="md:h-10 md:w-10 md:block hidden">
-        <div className="rounded-lg">
+        <div className="rounded-lg flex items-center justify-center">
           <UserIcon className="text-black dark:text-white" />
         </div>
       </Avatar>
