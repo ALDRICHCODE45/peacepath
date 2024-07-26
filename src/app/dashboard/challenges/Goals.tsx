@@ -27,7 +27,7 @@ export default function Goals() {
         </h1>
         <DrawerDemo />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-200px)]">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-300px)]">
         {userGoals.map((goal, index) => (
           <GoalCard
             icon={icons[index]?.icon}
