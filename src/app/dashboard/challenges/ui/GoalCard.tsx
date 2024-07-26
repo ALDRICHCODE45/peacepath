@@ -65,6 +65,7 @@ export const GoalCard = ({ icon, state, title, goalId }: Props) => {
     }, 250);
     setIsLoading(false);
   };
+
   return (
     <>
       <Card className="relative dark:bg-[#181a1b] rounded-lg p-4 flex flex-col items-center justify-center border dark:border-[#363b3d]">
