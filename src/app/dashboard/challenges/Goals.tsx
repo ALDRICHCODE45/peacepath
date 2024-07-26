@@ -10,17 +10,10 @@ export default function Goals() {
   const userGoals = useGoalsStore((store) => store.goals);
 
   useEffect(() => {
-    const setInitialGoalsState = () => {
-      if (
-        userGoals.length === 0 ||
-        !localStorage.getItem("goals") ||
-        !localStorage.getItem("goals")?.length
-      ) {
-        setGoals(goalsInit);
-      }
-    };
-    setInitialGoalsState();
-  }, []);
+    if (userGoals.length === 0) {
+      setGoals(goalsInit);
+    }
+  }, [userGoals.length, setGoals]);
 
   return (
     <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
