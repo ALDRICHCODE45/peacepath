@@ -11,7 +11,7 @@ interface Props {
   initialAudios?: AudioI[];
 }
 
-export default function Reproductor({ initialAudios = [] }: Props) {
+export default function Reproduction({ initialAudios = [] }: Props) {
   const [loaded, setLoaded] = useState<boolean>(false);
   const setUserAudios = useAudioStore((store) => store.setUserAudios);
   const cleanActiveAudio = useAudioStore((store) => store.cleanActiveAudio);

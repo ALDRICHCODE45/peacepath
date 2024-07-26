@@ -56,8 +56,6 @@ const data = [
 ];
 
 export function DrawerDemo() {
-  const [goal, setGoal] = React.useState(350);
-
   // Calculating progress towards the goal
 
   return (

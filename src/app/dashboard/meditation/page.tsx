@@ -1,8 +1,8 @@
 import prisma from "@/app/lib/db";
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import Reproductor from "./ui/Reproductor";
 import { Metadata } from "next";
 import { unstable_noStore as noStore } from "next/cache";
+import Reproduction from "./ui/Reproduction";
 
 export const maxDuration = 60;
 
@@ -30,7 +30,7 @@ export default async function MeditationPage() {
 
   return (
     <>
-      <Reproductor initialAudios={userAudios} />
+      <Reproduction initialAudios={userAudios} />
     </>
   );
 }
