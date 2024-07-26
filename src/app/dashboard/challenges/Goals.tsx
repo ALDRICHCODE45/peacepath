@@ -28,8 +28,8 @@ export default function Goals() {
         <DrawerDemo />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-260px)]">
-        {!userGoals.length && (
-          <div className="w-full mx-auto">
+        {!userGoals.length && !isLoading && (
+          <div className="w-full mx-auto flex justify-center">
             <Button
               onClick={handleCreateGoals}
               variant="default"
@@ -40,8 +40,8 @@ export default function Goals() {
           </div>
         )}
         {isLoading && (
-          <div className="w-full mx-auto">
-            <Loader2 width={50} height={50} />
+          <div className="w-full mx-auto flex justify-center">
+            <Loader2 width={50} height={50} className="animate-spin" />
           </div>
         )}
         {userGoals?.map((goal, index) => (
