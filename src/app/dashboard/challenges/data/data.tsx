@@ -25,7 +25,7 @@ enum GoalState {
 interface Goal {
   title: string;
   state: GoalState;
-  icon: JSX.Element;
+  icon: React.ReactNode;
   id: string;
 }
 
