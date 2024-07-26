@@ -1,4 +1,4 @@
-import { goalsInit } from "@/app/dashboard/challenges/Goals";
+import { goalsInit } from "@/app/dashboard/challenges/page";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
