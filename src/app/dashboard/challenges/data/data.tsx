@@ -92,12 +92,12 @@ export const goalsInit: Goal[] = [
   },
   {
     title: "Daily Meditation",
-    state: GoalState.Locked,
+    state: GoalState.Unlocked,
     id: generateId(),
   },
   {
     title: "First Kia Session",
-    state: GoalState.Locked,
+    state: GoalState.Unlocked,
     id: generateId(),
   },
   {
@@ -117,7 +117,7 @@ export const goalsInit: Goal[] = [
   },
   {
     title: "Gratitude Journal",
-    state: GoalState.Locked,
+    state: GoalState.Unlocked,
     id: generateId(),
   },
   {
@@ -127,7 +127,7 @@ export const goalsInit: Goal[] = [
   },
   {
     title: "Energy Boost",
-    state: GoalState.Locked,
+    state: GoalState.Unlocked,
     id: generateId(),
   },
   {
@@ -142,7 +142,7 @@ export const goalsInit: Goal[] = [
   },
   {
     title: "Global Awareness",
-    state: GoalState.Locked,
+    state: GoalState.Unlocked,
     id: generateId(),
   },
   {
