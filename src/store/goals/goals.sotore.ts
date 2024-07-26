@@ -9,7 +9,7 @@ interface Goal {
   id: string;
 }
 
-enum GoalState {
+export enum GoalState {
   Unlocked = "Unlocked",
   Locked = "Locked",
 }

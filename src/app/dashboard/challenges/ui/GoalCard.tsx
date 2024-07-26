@@ -4,7 +4,7 @@ import { Card } from "@/components/ui/card";
 import React, { useState } from "react";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
-import { useGoalsStore } from "@/store/goals/goals.sotore";
+import { GoalState, useGoalsStore } from "@/store/goals/goals.sotore";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 
