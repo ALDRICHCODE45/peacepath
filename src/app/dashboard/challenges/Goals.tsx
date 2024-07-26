@@ -2,16 +2,22 @@
 import { DrawerDemo } from "./ui/Progress";
 import { GoalCard } from "./ui/GoalCard";
 import { useGoalsStore } from "@/store/goals/goals.sotore";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { goalsInit, icons } from "./data/data";
 import { Button } from "@/components/ui/button";
+import { sleep } from "openai/core.mjs";
+import { Loader2 } from "lucide-react";
 
 export default function Goals() {
   const setGoals = useGoalsStore((store) => store.setGoals);
   const userGoals = useGoalsStore((store) => store.goals);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleCreateGoals = () => {
+    setIsLoading(true);
+    sleep(3);
     setGoals(goalsInit);
+    setIsLoading(false);
   };
 
   return (
@@ -24,13 +30,20 @@ export default function Goals() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-260px)]">
         {!userGoals.length && (
-          <Button
-            onClick={handleCreateGoals}
-            variant="default"
-            className="w-[30px]"
-          >
-            Create challenges
-          </Button>
+          <div className="w-full mx-auto">
+            <Button
+              onClick={handleCreateGoals}
+              variant="default"
+              className="w-[500px]"
+            >
+              Create challenges
+            </Button>
+          </div>
+        )}
+        {isLoading && (
+          <div className="w-full mx-auto">
+            <Loader2 width={50} height={50} />
+          </div>
         )}
         {userGoals?.map((goal, index) => (
           <GoalCard
