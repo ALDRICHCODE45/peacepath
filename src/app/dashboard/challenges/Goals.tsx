@@ -1,3 +1,4 @@
+"use client";
 import { DrawerDemo } from "./ui/Progress";
 import {
   BookOpen,
