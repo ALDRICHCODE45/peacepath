@@ -10,7 +10,7 @@ export default function Goals() {
   const userGoals = useGoalsStore((store) => store.goals);
 
   useEffect(() => {
-    if (userGoals.length === 0) {
+    if (userGoals.length === 0 || !localStorage.getItem("goals")) {
       setGoals(goalsInit);
     }
   }, [userGoals.length, setGoals]);
