@@ -3,8 +3,10 @@ import { DrawerDemo } from "./ui/Progress";
 
 import { GoalCard } from "./ui/GoalCard";
 import { useGoalsStore } from "@/store/goals/goals.sotore";
+import { goalsInit } from "./data/data";
 
 export default function Goals() {
+  useGoalsStore((store) => store.setGoals)(goalsInit);
   const userGoals = useGoalsStore((store) => store.goals);
 
   return (
