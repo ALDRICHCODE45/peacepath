@@ -6,12 +6,14 @@ import { useEffect } from "react";
 import { goalsInit } from "./data/data";
 
 export default function Goals() {
+  const setGoals = useGoalsStore((store) => store.setGoals);
   const userGoals = useGoalsStore((store) => store.goals);
+
   useEffect(() => {
     const setInitialGoalsState = () => {
       const localStorageGoals = localStorage.getItem("goals");
       if (!localStorageGoals) {
-        useGoalsStore((store) => store.setGoals)(goalsInit);
+        setGoals(goalsInit);
       }
     };
     setInitialGoalsState();
