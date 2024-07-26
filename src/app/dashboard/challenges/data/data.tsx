@@ -18,6 +18,57 @@ import {
 } from "lucide-react";
 import { generateId } from "ai";
 
+export const icons = [
+  {
+    icon: <Smile className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <Medal className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <Trophy className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <PersonStanding className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <NotebookTabs className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <NotebookTabs className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <Heart className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <Leaf className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <CloudLightning className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <Star className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <Handshake className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <Globe className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <Lightbulb className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <Music className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <BookOpen className="w-8 h-8 text-primary-foreground" />,
+  },
+  {
+    icon: <Rocket className="w-8 h-8 text-primary-foreground" />,
+  },
+];
+
 // Define an enum for the goal states
 enum GoalState {
   Unlocked = "Unlocked",

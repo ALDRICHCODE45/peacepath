@@ -3,7 +3,7 @@ import { DrawerDemo } from "./ui/Progress";
 import { GoalCard } from "./ui/GoalCard";
 import { useGoalsStore } from "@/store/goals/goals.sotore";
 import { useEffect } from "react";
-import { goalsInit } from "./data/data";
+import { goalsInit, icons } from "./data/data";
 
 export default function Goals() {
   const setGoals = useGoalsStore((store) => store.setGoals);
@@ -28,8 +28,9 @@ export default function Goals() {
         <DrawerDemo />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-200px)]">
-        {userGoals.map((goal) => (
+        {userGoals.map((goal, index) => (
           <GoalCard
+            icon={icons[index]?.icon}
             goalId={goal.id}
             state={goal.state}
             title={goal.title}
