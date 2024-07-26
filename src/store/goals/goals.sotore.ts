@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 interface Goal {
   title: string;
@@ -20,31 +21,36 @@ interface InitialState {
   setGoals: (goals: Goal[]) => void;
 }
 
-export const useGoalsStore = create<InitialState>()((set, get) => ({
-  goals: [],
-  setGoals(newGoals: Goal[]) {
-    set({ goals: newGoals });
-  },
-  unlockedGoal({ goalId, state }) {
-    const { goals } = get();
-    const updatedGoals = goals.map((goal) => {
-      if (goal.id === goalId) {
-        if (goal.state === state) return goal;
-        return { ...goal, state: state };
-      }
-      return goal;
-    });
-    set({ goals: updatedGoals });
-  },
-  getUnlockedQuantity() {
-    const { goals } = get();
-    const totalgoals = goals.length;
-    const unlockedGoals = goals.filter(
-      (goal) => goal.state === "Unlocked"
-    ).length;
-    return {
-      unlockedGoals,
-      totalgoals,
-    };
-  },
-}));
+export const useGoalsStore = create<InitialState>()(
+  persist(
+    (set, get) => ({
+      goals: [],
+      setGoals(newGoals: Goal[]) {
+        set({ goals: newGoals });
+      },
+      unlockedGoal({ goalId, state }) {
+        const { goals } = get();
+        const updatedGoals = goals.map((goal) => {
+          if (goal.id === goalId) {
+            if (goal.state === state) return goal;
+            return { ...goal, state: state };
+          }
+          return goal;
+        });
+        set({ goals: updatedGoals });
+      },
+      getUnlockedQuantity() {
+        const { goals } = get();
+        const totalgoals = goals.length;
+        const unlockedGoals = goals.filter(
+          (goal) => goal.state === "Unlocked"
+        ).length;
+        return {
+          unlockedGoals,
+          totalgoals,
+        };
+      },
+    }),
+    { name: "goals" }
+  )
+);

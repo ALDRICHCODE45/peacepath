@@ -70,6 +70,7 @@ export const GoalCard = ({ icon, state, title, goalId }: Props) => {
       <Card className="relative dark:bg-[#181a1b] rounded-lg p-4 flex flex-col items-center justify-center border dark:border-[#363b3d]">
         <Button
           onClick={handleClick}
+          disabled={state === "Unlocked"}
           className="absolute top-2 right-2 "
           variant="outline"
         >
