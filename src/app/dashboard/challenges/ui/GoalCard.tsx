@@ -15,7 +15,7 @@ interface Props {
   goalId: string;
 }
 
-const sleep = (s: number) => {
+export const sleep = (s: number) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(true);

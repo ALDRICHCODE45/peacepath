@@ -1,11 +1,10 @@
 "use client";
 import { DrawerDemo } from "./ui/Progress";
-import { GoalCard } from "./ui/GoalCard";
+import { GoalCard, sleep } from "./ui/GoalCard";
 import { useGoalsStore } from "@/store/goals/goals.sotore";
 import { useState } from "react";
 import { goalsInit, icons } from "./data/data";
 import { Button } from "@/components/ui/button";
-import { sleep } from "openai/core.mjs";
 import { Loader2 } from "lucide-react";
 
 export default function Goals() {
