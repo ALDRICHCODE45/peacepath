@@ -34,7 +34,7 @@ export default function Goals() {
             icon={goal.icon}
             state={goal.state}
             title={goal.title}
-            key={goal.id}
+            key={goal.title}
           />
         ))}
       </div>
