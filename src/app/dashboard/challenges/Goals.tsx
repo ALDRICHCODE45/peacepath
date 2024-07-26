@@ -12,7 +12,7 @@ export default function Goals() {
   useEffect(() => {
     const setInitialGoalsState = () => {
       const localStorageGoals = localStorage.getItem("goals");
-      if (!localStorageGoals) {
+      if (!localStorageGoals?.length) {
         setGoals(goalsInit);
       }
     };
