@@ -1,18 +1,42 @@
 "use client";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import React from "react";
+import React, { useState } from "react";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
+import { useGoalsStore } from "@/store/goals/goals.sotore";
+import { Loader2 } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Props {
   title: string;
   state: string;
   icon: React.ReactNode;
+  goalId: string;
 }
 
-export const GoalCard = ({ icon, state, title }: Props) => {
-  const handleClick = () => {
+const sleep = (s: number) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, s * 1000);
+  });
+};
+
+export const GoalCard = ({ icon, state, title, goalId }: Props) => {
+  const unlockedGoal = useGoalsStore((state) => state.unlockedGoal);
+  const [isloading, setIsLoading] = useState<boolean>(false);
+  const { toast } = useToast();
+
+  const handleClick = async () => {
+    setIsLoading(true);
+    await sleep(4);
+    toast({
+      variant: "default",
+      title: "Congrats!!, Goal Unlocked",
+      description: "You can do it!",
+    });
+    unlockedGoal({ goalId: goalId, state: "Unlocked" });
     const duration = 5 * 1000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -39,6 +63,7 @@ export const GoalCard = ({ icon, state, title }: Props) => {
         origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
       });
     }, 250);
+    setIsLoading(false);
   };
   return (
     <>
@@ -48,7 +73,8 @@ export const GoalCard = ({ icon, state, title }: Props) => {
           className="absolute top-2 right-2 "
           variant="outline"
         >
-          Compleat
+          {isloading && <Loader2 className="mr-2 w-4 h-4 animate-spin" />}
+          Complete
         </Button>
         <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center mb-2 border border-[#363b3d]">
           {icon}

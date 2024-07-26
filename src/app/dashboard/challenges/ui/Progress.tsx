@@ -12,6 +12,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
+import { useGoalsStore } from "@/store/goals/goals.sotore";
 
 const data = [
   {
@@ -58,6 +59,10 @@ const data = [
 export function DrawerDemo() {
   // Calculating progress towards the goal
 
+  const { totalgoals, unlockedGoals } = useGoalsStore(
+    (store) => store.getUnlockedQuantity
+  )();
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -72,7 +77,9 @@ export function DrawerDemo() {
           <div className="p-4 pb-0">
             <div className="flex items-center justify-center space-x-2">
               <div className="flex-1 text-center">
-                <div className="text-7xl font-bold tracking-tighter">3/5</div>
+                <div className="text-7xl font-bold tracking-tighter">
+                  {totalgoals}/{unlockedGoals}
+                </div>
                 <div className="text-[0.70rem] uppercase text-muted-foreground">
                   Goals/day
                 </div>

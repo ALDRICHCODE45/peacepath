@@ -34,7 +34,6 @@ export async function submitMessage(question: string) {
     },
   });
   const thread_id = dbUser?.thread_id;
-  console.log(thread_id);
 
   const textStream = createStreamableValue("");
   const textUIStream = createStreamableUI(
@@ -56,7 +55,6 @@ export async function submitMessage(question: string) {
         },
       });
       //todo:guardar el mensaje del usuario en db
-      console.log({ newMessage, on: "if" });
 
       const run = await openai.beta.threads.runs.create(thread_id, {
         assistant_id: ASSISTANT_ID,
@@ -76,7 +74,6 @@ export async function submitMessage(question: string) {
           thread_id: thread.id,
         },
       });
-      console.log({ thread, on: "else" });
 
       const message = await openai.beta.threads.messages.create(thread.id, {
         role: "user",
@@ -90,8 +87,6 @@ export async function submitMessage(question: string) {
           isKaiMessage: false,
         },
       });
-
-      console.log({ message, on: "else" });
 
       const run = await openai.beta.threads.runs.create(thread.id, {
         assistant_id: ASSISTANT_ID,
