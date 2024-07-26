@@ -2,9 +2,20 @@
 import { DrawerDemo } from "./ui/Progress";
 import { GoalCard } from "./ui/GoalCard";
 import { useGoalsStore } from "@/store/goals/goals.sotore";
+import { useEffect } from "react";
+import { goalsInit } from "./data/data";
 
 export default function Goals() {
   const userGoals = useGoalsStore((store) => store.goals);
+  useEffect(() => {
+    const setInitialGoalsState = () => {
+      const localStorageGoals = localStorage.getItem("goals");
+      if (!localStorageGoals) {
+        useGoalsStore((store) => store.setGoals)(goalsInit);
+      }
+    };
+    setInitialGoalsState();
+  }, []);
 
   return (
     <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
@@ -14,7 +25,7 @@ export default function Goals() {
         </h1>
         <DrawerDemo />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-150px)]">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-200px)]">
         {userGoals.map((goal) => (
           <GoalCard
             goalId={goal.id}
