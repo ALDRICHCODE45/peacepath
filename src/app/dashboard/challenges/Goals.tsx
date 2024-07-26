@@ -13,8 +13,8 @@ export default function Goals() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleCreateGoals = async () => {
-    await sleep(3);
     setIsLoading(true);
+    await sleep(3);
     setGoals(goalsInit);
     setIsLoading(false);
   };
