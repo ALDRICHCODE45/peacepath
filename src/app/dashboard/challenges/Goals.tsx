@@ -31,7 +31,6 @@ export default function Goals() {
         {userGoals.map((goal) => (
           <GoalCard
             goalId={goal.id}
-            icon={goal.icon}
             state={goal.state}
             title={goal.title}
             key={goal.title}

@@ -4,7 +4,6 @@ import { persist } from "zustand/middleware";
 interface Goal {
   title: string;
   state: GoalState;
-  icon: React.ReactNode;
   id: string;
 }
 

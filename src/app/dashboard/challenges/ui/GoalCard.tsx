@@ -11,7 +11,7 @@ import { useToast } from "@/components/ui/use-toast";
 interface Props {
   title: string;
   state: GoalState;
-  icon: React.ReactNode;
+  //icon: React.ReactNode;
   goalId: string;
 }
 
@@ -23,7 +23,7 @@ const sleep = (s: number) => {
   });
 };
 
-export const GoalCard = ({ icon, state, title, goalId }: Props) => {
+export const GoalCard = ({ state, title, goalId }: Props) => {
   const unlockedGoal = useGoalsStore((state) => state.unlockedGoal);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
@@ -80,7 +80,7 @@ export const GoalCard = ({ icon, state, title, goalId }: Props) => {
           Complete
         </Button>
         <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center mb-2 border border-[#363b3d]">
-          {icon}
+          ICON
         </div>
         <div className="flex flex-col items-center justify-between ">
           <p className="text-sm font-medium text-black dark:text-white">
