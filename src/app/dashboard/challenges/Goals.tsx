@@ -35,7 +35,7 @@ interface Goal {
 }
 
 // Define the list for goals
-const goals: Goal[] = [
+export const goalsInit: Goal[] = [
   {
     title: "Positive Mindset",
     state: GoalState.Unlocked,
@@ -135,7 +135,6 @@ const goals: Goal[] = [
 ];
 
 export default function Goals() {
-  useGoalsStore((store) => store.setGoals)(goals);
   const userGoals = useGoalsStore((store) => store.goals);
 
   return (
@@ -146,7 +145,7 @@ export default function Goals() {
         </h1>
         <DrawerDemo />
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-150px)]">
         {userGoals.map((goal) => (
           <GoalCard
             goalId={goal.id}
