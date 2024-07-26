@@ -4,21 +4,20 @@ import { persist } from "zustand/middleware";
 
 interface Goal {
   title: string;
-  state: "Locked" | "Unlocked";
+  state: GoalState;
   icon: React.ReactNode;
   id: string;
 }
 
+enum GoalState {
+  Unlocked = "Unlocked",
+  Locked = "Locked",
+}
+
 interface InitialState {
   goals: Goal[];
-  unlockedGoal: ({
-    goalId,
-    state,
-  }: {
-    goalId: string;
-    state: "Locked" | "Unlocked";
-  }) => void;
-  getUnlockedQuantity: () => { totalgoals: number; unlockedGoals: number };
+  unlockedGoal: (goal: { goalId: string; state: GoalState }) => void;
+  getUnlockedQuantity: () => { totalGoals: number; unlockedGoals: number };
   setGoals: (goals: Goal[]) => void;
 }
 
@@ -42,13 +41,13 @@ export const useGoalsStore = create<InitialState>()(
       },
       getUnlockedQuantity() {
         const { goals } = get();
-        const totalgoals = goals.length;
+        const totalGoals = goals.length;
         const unlockedGoals = goals.filter(
-          (goal) => goal.state === "Unlocked"
+          (goal) => goal.state === GoalState.Unlocked
         ).length;
         return {
+          totalGoals,
           unlockedGoals,
-          totalgoals,
         };
       },
     }),

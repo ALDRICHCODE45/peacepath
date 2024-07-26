@@ -1,4 +1,3 @@
-import { generateId } from "ai";
 import {
   BookOpen,
   CloudLightning,
@@ -16,6 +15,9 @@ import {
   Star,
   Trophy,
 } from "lucide-react";
+import { generateId } from "ai";
+
+// Define an enum for the goal states
 enum GoalState {
   Unlocked = "Unlocked",
   Locked = "Locked",
@@ -29,7 +31,7 @@ interface Goal {
   id: string;
 }
 
-// Define the list for goals
+// Define the list for initial goals
 export const goalsInit: Goal[] = [
   {
     title: "Positive Mindset",
@@ -112,8 +114,8 @@ export const goalsInit: Goal[] = [
   {
     title: "Music Therapy",
     state: GoalState.Unlocked,
-    id: generateId(),
     icon: <Music className="w-8 h-8 text-primary-foreground" />,
+    id: generateId(),
   },
   {
     title: "Read a Book",

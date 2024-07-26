@@ -10,7 +10,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 interface Props {
   title: string;
-  state: string;
+  state: GoalState;
   icon: React.ReactNode;
   goalId: string;
 }
@@ -25,7 +25,7 @@ const sleep = (s: number) => {
 
 export const GoalCard = ({ icon, state, title, goalId }: Props) => {
   const unlockedGoal = useGoalsStore((state) => state.unlockedGoal);
-  const [isloading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
 
   const handleClick = async () => {
@@ -36,7 +36,7 @@ export const GoalCard = ({ icon, state, title, goalId }: Props) => {
       title: "Congrats!!, Goal Unlocked",
       description: "You can do it!",
     });
-    unlockedGoal({ goalId: goalId, state: "Unlocked" });
+    unlockedGoal({ goalId: goalId, state: GoalState.Unlocked });
     const duration = 5 * 1000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -63,36 +63,38 @@ export const GoalCard = ({ icon, state, title, goalId }: Props) => {
         origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
       });
     }, 250);
+
     setIsLoading(false);
   };
 
   return (
-    <>
-      <Card className="relative dark:bg-[#181a1b] rounded-lg p-4 flex flex-col items-center justify-center border dark:border-[#363b3d]">
+    <Card className="p-4 flex flex-col items-center text-center">
+      <Badge
+        className={`text-primary-foreground ${
+          state === GoalState.Unlocked ? "bg-green-500" : "bg-red-500"
+        }`}
+      >
+        {state}
+      </Badge>
+      <div className="my-4">{icon}</div>
+      <h2 className="font-bold text-lg">{title}</h2>
+      {state === GoalState.Locked && (
         <Button
+          className="mt-4"
           onClick={handleClick}
-          disabled={state === "Unlocked"}
-          className="absolute top-2 right-2 "
-          variant="outline"
+          disabled={isLoading}
+          size="sm"
         >
-          {isloading && <Loader2 className="mr-2 w-4 h-4 animate-spin" />}
-          Complete
+          {isLoading ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              Please Wait...
+            </>
+          ) : (
+            "Unlock"
+          )}
         </Button>
-        <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center mb-2 border border-[#363b3d]">
-          {icon}
-        </div>
-        <div className="flex flex-col items-center justify-between ">
-          <p className="text-sm font-medium text-black dark:text-white">
-            {title}
-          </p>
-          <Badge
-            variant={state === "Unlocked" ? "success_badged" : "outline"}
-            className="text-black border dark:border-[#363b3d] mt-2"
-          >
-            {state}
-          </Badge>
-        </div>
-      </Card>
-    </>
+      )}
+    </Card>
   );
 };
