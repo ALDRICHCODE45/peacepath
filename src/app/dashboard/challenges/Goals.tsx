@@ -24,7 +24,13 @@ export default function Goals() {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-260px)]">
         {!userGoals.length && (
-          <Button onClick={handleCreateGoals} variant="default"></Button>
+          <Button
+            onClick={handleCreateGoals}
+            variant="default"
+            className="w-[30px]"
+          >
+            Create challenges
+          </Button>
         )}
         {userGoals?.map((goal, index) => (
           <GoalCard
