@@ -87,82 +87,82 @@ interface Goal {
 export const goalsInit: Goal[] = [
   {
     title: "Positive Mindset",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Daily Meditation",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "First Kia Session",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Help Someone",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "5 Sessions in a Row",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Make Peace with Your Parents",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Gratitude Journal",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Nature Walk",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Energy Boost",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Reach for the Stars",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Kindness Act",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Global Awareness",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Bright Ideas",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Music Therapy",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Read a Book",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
   {
     title: "Launch Your Dream",
-    state: GoalState.Unlocked,
+    state: GoalState.Locked,
     id: generateId(),
   },
 ];
