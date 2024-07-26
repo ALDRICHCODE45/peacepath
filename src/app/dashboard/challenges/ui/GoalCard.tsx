@@ -69,7 +69,7 @@ export const GoalCard = ({ icon, state, title, goalId }: Props) => {
 
   return (
     <>
-      <Card className="relative dark:bg-[#181a1b] rounded-lg p-4 flex flex-col items-center justify-center border dark:border-[#363b3d]">
+      <Card className="animate__animated animate__fadeInDown  relative dark:bg-[#181a1b] rounded-lg p-4 flex flex-col items-center justify-center border dark:border-[#363b3d]">
         <Button
           onClick={handleClick}
           disabled={state === "Unlocked"}
