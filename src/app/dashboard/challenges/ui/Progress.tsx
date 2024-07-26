@@ -59,7 +59,7 @@ const data = [
 export function DrawerDemo() {
   // Calculating progress towards the goal
 
-  const { totalgoals, unlockedGoals } = useGoalsStore(
+  const { totalGoals, unlockedGoals } = useGoalsStore(
     (store) => store.getUnlockedQuantity
   )();
 
@@ -78,7 +78,7 @@ export function DrawerDemo() {
             <div className="flex items-center justify-center space-x-2">
               <div className="flex-1 text-center">
                 <div className="text-7xl font-bold tracking-tighter">
-                  {unlockedGoals}/{totalgoals}
+                  {unlockedGoals}/{totalGoals}
                 </div>
                 <div className="text-[0.70rem] uppercase text-muted-foreground">
                   Goals/day
