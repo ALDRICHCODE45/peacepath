@@ -1,3 +1,4 @@
+import { goalsInit } from "@/app/dashboard/challenges/data/data";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
@@ -23,7 +24,7 @@ interface InitialState {
 export const useGoalsStore = create<InitialState>()(
   persist(
     (set, get) => ({
-      goals: [],
+      goals: goalsInit,
       setGoals(newGoals: Goal[]) {
         set({ goals: newGoals });
       },
