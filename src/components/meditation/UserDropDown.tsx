@@ -1,3 +1,4 @@
+"use client";
 import { type ReactElement } from "react";
 import {
   DropdownMenu,
@@ -11,6 +12,7 @@ import DefaultUser from "../../../public/placeholder-user.png";
 import Image from "next/image";
 import Link from "next/link";
 import { LogoutLink } from "@kinde-oss/kinde-auth-nextjs/components";
+import { usePathname } from "next/navigation";
 
 export interface UserDropDownProps {
   image?: string;
@@ -18,6 +20,21 @@ export interface UserDropDownProps {
 
 export function UserDropDown({ image }: UserDropDownProps): ReactElement {
   const imageToShow = image ? image : DefaultUser;
+  const pathName = usePathname();
+  const links = [
+    {
+      href: "/dashboard/talking-zone",
+      title: "Talking Zone",
+    },
+    {
+      href: "/dashboard/meditation",
+      title: "My Meditations",
+    },
+    {
+      href: "/dashboard/challenges",
+      title: "Challenges",
+    },
+  ];
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -33,27 +50,26 @@ export function UserDropDown({ image }: UserDropDownProps): ReactElement {
         </div>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[200px]">
+        {links.map((link) => (
+          <>
+            <DropdownMenuItem>
+              <Link
+                className={`w-full ${
+                  pathName === link.href ? "underline" : ""
+                } `}
+                href={link.href}
+              >
+                {link.title}
+              </Link>
+            </DropdownMenuItem>
+          </>
+        ))}
+        <DropdownMenuSeparator className="text-lg" />
         <DropdownMenuItem>
-          <Link className="w-full" href="/dashboard/talking-zone">
-            Talking Zone
-          </Link>
+          <LogoutLink className="w-full bg-gray-50">Log out</LogoutLink>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link className="w-full" href="/dashboard/meditation">
-            My Meditations
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Link className="w-full" href="/dashboard/challenges">
-            Challenges
-          </Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          <LogoutLink className="w-full">Log out</LogoutLink>
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Link href="/" className="w-full">
+          <Link href="/" className="w-full bg-gray-50">
             Home
           </Link>
         </DropdownMenuItem>
