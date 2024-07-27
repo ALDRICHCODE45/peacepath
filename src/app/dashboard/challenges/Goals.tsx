@@ -32,6 +32,7 @@ export default function Goals({ initialGoals }: Props) {
     const { ok, error } = await crateNewChallenge();
     if (error || !ok) {
       setError(error!);
+      setIsLoading(false);
       return;
     }
     setIsLoading(false);
