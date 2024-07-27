@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function Goals({ initialGoals }: Props) {
-  const [loading, setIsLoading] = useState<boolean>(false);
+  const [loading, setIsLoading] = useState<Button>(false);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
@@ -48,7 +48,7 @@ export default function Goals({ initialGoals }: Props) {
           className="w-[120px]"
           disabled={loading}
         >
-          New Challenge
+          {loading ? <Loader2 className="animate-spin" /> : "New Challenge"}
         </Button>
       </div>
       <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
