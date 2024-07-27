@@ -83,7 +83,6 @@ export default function Goals({ initialGoals }: Props) {
                 title={goal.title}
                 key={goal.title}
                 description={goal.description}
-                className="w-full h-full"
               />
             ))}
           </div>
