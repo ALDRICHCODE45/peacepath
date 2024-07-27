@@ -38,11 +38,11 @@ export default function Goals({ initialGoals }: Props) {
   };
   return (
     <>
-      <div className="w-11">
+      <div>
         <Button
           onClick={handleCreateGoals}
           variant="progress"
-          className="w-[500px]"
+          className="w-[100px]"
           disabled={loading}
         >
           Create new Challenge
