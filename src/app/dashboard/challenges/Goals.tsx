@@ -38,7 +38,7 @@ export default function Goals({ initialGoals }: Props) {
   };
   return (
     <>
-      <div className="w-[100px]">
+      <div className="w-11">
         <Button
           onClick={handleCreateGoals}
           variant="progress"
