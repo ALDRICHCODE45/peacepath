@@ -41,7 +41,7 @@ export default function Goals({ initialGoals }: Props) {
 
   return (
     <>
-      <div className="flex justify-center my-4">
+      <div>
         <Button
           onClick={handleCreateGoals}
           variant="progress"
