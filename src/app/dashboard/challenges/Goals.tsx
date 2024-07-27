@@ -3,7 +3,7 @@ import { DrawerDemo } from "./ui/Progress";
 import { GoalCard, sleep } from "./ui/GoalCard";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Layers3, Loader2, Medal, PackageOpen } from "lucide-react";
+import { Loader2, Medal, PackageOpen } from "lucide-react";
 import { Challenge } from "@prisma/client";
 import { useToast } from "@/components/ui/use-toast";
 import { crateNewChallenge } from "@/actions/createNewChallenge";
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default function Goals({ initialGoals }: Props) {
-  const [loading, setIsLoading] = useState<Button>(false);
+  const [loading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const { toast } = useToast();
 
