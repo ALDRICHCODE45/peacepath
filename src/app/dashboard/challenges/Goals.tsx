@@ -3,7 +3,7 @@ import { DrawerDemo } from "./ui/Progress";
 import { GoalCard, sleep } from "./ui/GoalCard";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Layers3, Loader2, Medal } from "lucide-react";
+import { Layers3, Loader2, Medal, PackageOpen } from "lucide-react";
 import { Challenge } from "@prisma/client";
 import { useToast } from "@/components/ui/use-toast";
 import { crateNewChallenge } from "@/actions/createNewChallenge";
@@ -60,7 +60,7 @@ export default function Goals({ initialGoals }: Props) {
         </div>
         {!initialGoals.length ? (
           <div className="w-full h-full flex flex-col justify-center items-center mt-[100px]">
-            <Layers3
+            <PackageOpen
               size={32}
               className="text-4xl text-black dark:text-white"
             />
