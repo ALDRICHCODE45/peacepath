@@ -75,8 +75,8 @@ export const GoalCard = ({
   };
 
   return (
-    <Card className="animate__animated animate__fadeInDown relative dark:bg-[#181a1b] rounded-lg p-2 flex flex-col items-center justify-center border dark:border-[#363b3d] w-80 h-60">
-      <div className="w-full flex justify-between items-center ">
+    <Card className="animate__animated animate__fadeInDown relative dark:bg-[#181a1b] rounded-lg p-2 flex flex-col items-center justify-center border dark:border-[#363b3d] w-80 h-60 mb-5">
+      <div className="w-full flex justify-between items-center top-0 mt-0">
         <ShowDetails details={description} />
         <Button
           onClick={handleClick}
