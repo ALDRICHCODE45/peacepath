@@ -106,7 +106,7 @@ export const createPersonalMeditation = async (): Promise<Response> => {
     return {
       url: null,
       error: {
-        message: "user not found in Db",
+        message: "usuario no encontrado en base de datos",
       },
     };
   }
@@ -114,7 +114,7 @@ export const createPersonalMeditation = async (): Promise<Response> => {
     return {
       url: null,
       error: {
-        message: "you dont have enough messages with kai",
+        message: "No tienes suficientes mensajes con Kia",
       },
     };
   }
@@ -155,7 +155,7 @@ export const createPersonalMeditation = async (): Promise<Response> => {
     return {
       url: null,
       error: {
-        message: "something went wrong",
+        message: "Algo salio mal",
       },
     };
   }

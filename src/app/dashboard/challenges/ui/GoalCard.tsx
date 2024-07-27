@@ -84,7 +84,7 @@ export const GoalCard = ({
           variant="outline"
           className="ml-2"
         >
-          {isLoading ? <Loader2 /> : "Complete"}
+          {isLoading ? <Loader2 className="animate-spin" /> : "Complete"}
         </Button>
       </div>
       <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center mb-2 border border-[#363b3d]">

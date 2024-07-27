@@ -31,7 +31,7 @@ export function AlertCrateMeditation() {
       //Todo:toast
       toast({
         variant: "destructive",
-        title: "Uh oh! Something went wrong.",
+        title: "Uh oh! Algo salio mal.",
         description: error.message,
         //action: <ToastAction altText="Try again">Try again</ToastAction>,
       });
@@ -70,7 +70,7 @@ export function AlertCrateMeditation() {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>Estas completamente seguro?</AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. A personalized meditation will be
             created.
