@@ -64,9 +64,9 @@ export default function Goals({ initialGoals }: Props) {
             </div>
           )}
           {!initialGoals.length && (
-            <div className="w-full h-full flex justify-center items-center flex-row">
-              <Layers3 size={32} />
-              <span>Aun no tienes Desafios</span>
+            <div className="w-full h-full flex-row justify-center items-center ">
+              <Layers3 size={32} className="text-4xl" />
+              <span className="text-3xl">Aun no tienes Desafios</span>
             </div>
           )}
           {initialGoals?.map((goal) => (
