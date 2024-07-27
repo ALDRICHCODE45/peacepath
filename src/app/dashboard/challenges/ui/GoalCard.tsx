@@ -40,8 +40,8 @@ export const GoalCard = ({
     await sleep(2);
     toast({
       variant: "default",
-      title: "Congrats!!, Goal Unlocked",
-      description: "You can do it!",
+      title: "¡Felicidades!, Meta Desbloqueada",
+      description: "¡Puedes hacerlo!",
     });
     await unlockGoal(goalId);
     const duration = 5 * 1000;
@@ -75,42 +75,32 @@ export const GoalCard = ({
   };
 
   return (
-    <>
-      <Card className="animate__animated animate__fadeInDown  relative dark:bg-[#181a1b] rounded-lg p-4 flex flex-col items-center justify-center border dark:border-[#363b3d]">
-        <div className="flex justify-between">
-          <div>
-            <Button
-              onClick={handleClick}
-              disabled={state === "Unlocked"}
-              className="absolute top-2 right-2 "
-              variant="outline"
-            >
-              {isLoading ? (
-                <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-              ) : (
-                "Complete"
-              )}
-            </Button>
-          </div>
-          <div className="justify-end">
-            <ShowDetails details={description} />
-          </div>
-        </div>
-        <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center mb-2 border border-[#363b3d]">
-          {icon}
-        </div>
-        <div className="flex flex-col items-center justify-between ">
-          <p className="text-sm font-medium text-black dark:text-white">
-            {title}
-          </p>
-          <Badge
-            variant={state === "Unlocked" ? "success_badged" : "outline"}
-            className="text-black border dark:border-[#363b3d] mt-2"
-          >
-            {state}
-          </Badge>
-        </div>
-      </Card>
-    </>
+    <Card className="animate__animated animate__fadeInDown relative dark:bg-[#181a1b] rounded-lg p-4 flex flex-col items-center justify-center border dark:border-[#363b3d] w-80 h-60">
+      <div className="w-full flex justify-between items-center mb-2">
+        <ShowDetails details={description} />
+        <Button
+          onClick={handleClick}
+          disabled={state === "Unlocked"}
+          variant="outline"
+          className="ml-2"
+        >
+          {isLoading ? <Loader2 /> : "Complete"}
+        </Button>
+      </div>
+      <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center mb-2 border border-[#363b3d]">
+        {icon}
+      </div>
+      <div className="flex flex-col items-center justify-between">
+        <p className="text-sm font-medium text-black dark:text-white">
+          {title}
+        </p>
+        <Badge
+          variant={state === "Unlocked" ? "success_badged" : "outline"}
+          className="text-black border dark:border-[#363b3d] mt-2"
+        >
+          {state}
+        </Badge>
+      </div>
+    </Card>
   );
 };

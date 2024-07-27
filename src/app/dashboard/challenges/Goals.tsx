@@ -42,10 +42,10 @@ export default function Goals({ initialGoals }: Props) {
         <Button
           onClick={handleCreateGoals}
           variant="progress"
-          className="w-[100px]"
+          className="w-[110px]"
           disabled={loading}
         >
-          Create new Challenge
+          New Challenge
         </Button>
       </div>
       <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
