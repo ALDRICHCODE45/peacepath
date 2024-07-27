@@ -68,6 +68,7 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
           )
         )}
       </div>
+      <div ref={messagesEndRef} />
       <div className="sticky bottom-0 w-full bg-white dark:bg-[#181a1b] p-4 border-t dark:border-[#363b3d]">
         <div className="flex items-center gap-4">
           <Input
@@ -84,7 +85,6 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
           <Button variant="dark" onClick={handleSubmission}>
             Send
           </Button>
-          <div ref={messagesEndRef} />
         </div>
       </div>
     </div>
