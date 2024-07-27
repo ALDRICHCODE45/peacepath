@@ -69,7 +69,7 @@ export default function Goals({ initialGoals }: Props) {
             </span>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 w-full h-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 w-full h-full gap-3">
             {loading && (
               <div className="w-full mx-auto flex justify-center">
                 <Loader2 width={50} height={50} className="animate-spin" />
