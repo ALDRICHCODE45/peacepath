@@ -59,7 +59,7 @@ export default function Goals({ initialGoals }: Props) {
           <DrawerDemo />
         </div>
         {!initialGoals.length ? (
-          <div className="w-full h-full flex flex-col justify-center items-center">
+          <div className="w-full h-full flex flex-col justify-center items-center mt-[100px]">
             <Layers3
               size={32}
               className="text-4xl text-black dark:text-white"
