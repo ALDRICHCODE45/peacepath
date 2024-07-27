@@ -45,7 +45,6 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
       },
     ]);
     const response = await submitMessage(input);
-
     setMessages((currentMessages) => [...currentMessages, response]);
     setInput("");
   };
@@ -68,7 +67,6 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
             <UserMessage key={message.id} text={message.text} />
           )
         )}
-        <div ref={messagesEndRef} />
       </div>
       <div className="sticky bottom-0 w-full bg-white dark:bg-[#181a1b] p-4 border-t dark:border-[#363b3d]">
         <div className="flex items-center gap-4">
@@ -86,6 +84,7 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
           <Button variant="dark" onClick={handleSubmission}>
             Send
           </Button>
+          <div ref={messagesEndRef} />
         </div>
       </div>
     </div>
