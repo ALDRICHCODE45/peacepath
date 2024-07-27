@@ -7,12 +7,14 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { unlockGoal } from "@/actions/unlockedChallenge";
+import { ShowDetails } from "./AlertDetails";
 
 interface Props {
   title: string;
   state: "Unlocked" | "Locked";
   icon: React.ReactNode;
   goalId: string;
+  description: string;
 }
 
 export const sleep = (s: number) => {
@@ -23,7 +25,13 @@ export const sleep = (s: number) => {
   });
 };
 
-export const GoalCard = ({ icon, state, title, goalId }: Props) => {
+export const GoalCard = ({
+  icon,
+  state,
+  title,
+  goalId,
+  description,
+}: Props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
 
@@ -69,18 +77,25 @@ export const GoalCard = ({ icon, state, title, goalId }: Props) => {
   return (
     <>
       <Card className="animate__animated animate__fadeInDown  relative dark:bg-[#181a1b] rounded-lg p-4 flex flex-col items-center justify-center border dark:border-[#363b3d]">
-        <Button
-          onClick={handleClick}
-          disabled={state === "Unlocked"}
-          className="absolute top-2 right-2 "
-          variant="outline"
-        >
-          {isLoading ? (
-            <Loader2 className="mr-2 w-4 h-4 animate-spin" />
-          ) : (
-            "Complete"
-          )}
-        </Button>
+        <div className="flex justify-between">
+          <div>
+            <Button
+              onClick={handleClick}
+              disabled={state === "Unlocked"}
+              className="absolute top-2 right-2 "
+              variant="outline"
+            >
+              {isLoading ? (
+                <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+              ) : (
+                "Complete"
+              )}
+            </Button>
+          </div>
+          <div className="justify-end">
+            <ShowDetails details={description} />
+          </div>
+        </div>
         <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center mb-2 border border-[#363b3d]">
           {icon}
         </div>

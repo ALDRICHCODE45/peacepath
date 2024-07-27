@@ -37,39 +37,42 @@ export default function Goals({ initialGoals }: Props) {
     setIsLoading(false);
   };
   return (
-    <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-black dark:text-white">
-          Your Badges
-        </h1>
-        <DrawerDemo />
-        <div className="w-[200px] mx-auto flex justify-center">
-          <Button
-            onClick={handleCreateGoals}
-            variant="progress"
-            className="w-[500px]"
-            disabled={loading}
-          >
-            Create new Challenge
-          </Button>
+    <>
+      <div>
+        <Button
+          onClick={handleCreateGoals}
+          variant="progress"
+          className="w-[500px]"
+          disabled={loading}
+        >
+          Create new Challenge
+        </Button>
+      </div>
+      <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
+        <div className="flex items-center justify-between mb-6">
+          <h1 className="text-2xl font-bold text-black dark:text-white">
+            Your Badges
+          </h1>
+          <DrawerDemo />
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-260px)]">
+          {loading && (
+            <div className="w-full mx-auto flex justify-center">
+              <Loader2 width={50} height={50} className="animate-spin" />
+            </div>
+          )}
+          {initialGoals?.map((goal) => (
+            <GoalCard
+              icon={<Medal className="w-8 h-8 text-primary-foreground" />}
+              goalId={goal.id}
+              state={goal.State}
+              title={goal.title}
+              key={goal.title}
+              description={goal.description}
+            />
+          ))}
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-260px)]">
-        {loading && (
-          <div className="w-full mx-auto flex justify-center">
-            <Loader2 width={50} height={50} className="animate-spin" />
-          </div>
-        )}
-        {initialGoals?.map((goal) => (
-          <GoalCard
-            icon={<Medal className="w-8 h-8 text-primary-foreground" />}
-            goalId={goal.id}
-            state={goal.State}
-            title={goal.title}
-            key={goal.title}
-          />
-        ))}
-      </div>
-    </div>
+    </>
   );
 }
