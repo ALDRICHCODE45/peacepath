@@ -1,22 +1,12 @@
 "use client";
-
 import { DrawerDemo } from "./ui/Progress";
 import { GoalCard, sleep } from "./ui/GoalCard";
-import { GoalState, useGoalsStore } from "@/store/goals/goals.sotore";
 import { useEffect, useState } from "react";
-import { goalsInit, icons } from "./data/data";
 import { Button } from "@/components/ui/button";
 import { Loader2, Medal } from "lucide-react";
 import { Challenge } from "@prisma/client";
 import { useToast } from "@/components/ui/use-toast";
 import { crateNewChallenge } from "@/actions/createNewChallenge";
-
-interface Goal {
-  id: string;
-  title: string;
-  description: string;
-  State: "Unlocked" | "Locked";
-}
 
 interface Props {
   initialGoals: Challenge[];
@@ -39,7 +29,11 @@ export default function Goals({ initialGoals }: Props) {
   const handleCreateGoals = async () => {
     setIsLoading(true);
     await sleep(4);
-    await crateNewChallenge();
+    const { ok, error } = await crateNewChallenge();
+    if (error || !ok) {
+      setError(error!);
+      return;
+    }
     setIsLoading(false);
   };
   return (
@@ -49,10 +43,10 @@ export default function Goals({ initialGoals }: Props) {
           Your Badges
         </h1>
         <DrawerDemo />
-        <div className="w-full mx-auto flex justify-center">
+        <div className="w-[200px] mx-auto flex justify-center">
           <Button
             onClick={handleCreateGoals}
-            variant="default"
+            variant="progress"
             className="w-[500px]"
             disabled={loading}
           >

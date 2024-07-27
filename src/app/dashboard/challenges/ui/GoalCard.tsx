@@ -4,9 +4,9 @@ import { Card } from "@/components/ui/card";
 import React, { useState } from "react";
 import confetti from "canvas-confetti";
 import { Button } from "@/components/ui/button";
-import { GoalState, useGoalsStore } from "@/store/goals/goals.sotore";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
+import { unlockGoal } from "@/actions/unlockedChallenge";
 
 interface Props {
   title: string;
@@ -24,19 +24,18 @@ export const sleep = (s: number) => {
 };
 
 export const GoalCard = ({ icon, state, title, goalId }: Props) => {
-  const unlockedGoal = useGoalsStore((state) => state.unlockedGoal);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { toast } = useToast();
 
   const handleClick = async () => {
     setIsLoading(true);
-    await sleep(4);
+    await sleep(2);
     toast({
       variant: "default",
       title: "Congrats!!, Goal Unlocked",
       description: "You can do it!",
     });
-    unlockedGoal({ goalId: goalId, state: GoalState.Unlocked });
+    await unlockGoal(goalId);
     const duration = 5 * 1000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
@@ -76,8 +75,11 @@ export const GoalCard = ({ icon, state, title, goalId }: Props) => {
           className="absolute top-2 right-2 "
           variant="outline"
         >
-          {isLoading && <Loader2 className="mr-2 w-4 h-4 animate-spin" />}
-          Complete
+          {isLoading ? (
+            <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+          ) : (
+            "Complete"
+          )}
         </Button>
         <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center mb-2 border border-[#363b3d]">
           {icon}

@@ -18,6 +18,7 @@ interface Message {
 interface DbMessages {
   messages: Message[];
 }
+
 const getUserMessages = async (userId: string): Promise<DbMessages | null> => {
   return prisma.user.findUnique({
     where: {
