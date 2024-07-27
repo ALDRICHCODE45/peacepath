@@ -22,13 +22,28 @@ model Audio {
   User   User?   @relation(fields: [userId], references: [id])
 }
 
+enum ChallengeSTate {
+  Unlocked
+  Locked
+}
+
 model User {
-  id        String    @id
-  email     String    @unique
+  id        String      @id
+  email     String      @unique
   firstName String
   lastName  String
-  Username  String    @unique
+  Username  String      @unique
   thread_id String?
   audios    Audio[]
   messages  Message[]
+  Challenge Challenge[]
+}
+
+model Challenge {
+  id          String         @id @default(uuid())
+  title       String
+  description String
+  State       ChallengeSTate @default(Locked)
+  UserId      String?
+  User        User?          @relation(fields: [UserId], references: [id])
 }

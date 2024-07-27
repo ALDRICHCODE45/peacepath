@@ -10,7 +10,7 @@ import { useToast } from "@/components/ui/use-toast";
 
 interface Props {
   title: string;
-  state: GoalState;
+  state: "Unlocked" | "Locked";
   icon: React.ReactNode;
   goalId: string;
 }

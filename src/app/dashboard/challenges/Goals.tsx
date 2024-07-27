@@ -1,24 +1,47 @@
 "use client";
+
 import { DrawerDemo } from "./ui/Progress";
 import { GoalCard, sleep } from "./ui/GoalCard";
-import { useGoalsStore } from "@/store/goals/goals.sotore";
-import { useState } from "react";
+import { GoalState, useGoalsStore } from "@/store/goals/goals.sotore";
+import { useEffect, useState } from "react";
 import { goalsInit, icons } from "./data/data";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import { Loader2, Medal } from "lucide-react";
+import { Challenge } from "@prisma/client";
+import { useToast } from "@/components/ui/use-toast";
+import { crateNewChallenge } from "@/actions/createNewChallenge";
 
-export default function Goals() {
-  const setGoals = useGoalsStore((store) => store.setGoals);
-  const userGoals = useGoalsStore((store) => store.goals);
-  const [isLoading, setIsLoading] = useState(false);
+interface Goal {
+  id: string;
+  title: string;
+  description: string;
+  State: "Unlocked" | "Locked";
+}
+
+interface Props {
+  initialGoals: Challenge[];
+}
+export default function Goals({ initialGoals }: Props) {
+  const [loading, setIsLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const { toast } = useToast();
+
+  useEffect(() => {
+    if (error) {
+      toast({
+        variant: "destructive",
+        title: "Something went wrong",
+        description: error,
+      });
+    }
+  }, [error]);
 
   const handleCreateGoals = async () => {
     setIsLoading(true);
-    await sleep(3);
-    setGoals(goalsInit);
+    await sleep(4);
+    await crateNewChallenge();
     setIsLoading(false);
   };
-
   return (
     <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
       <div className="flex items-center justify-between mb-6">
@@ -26,29 +49,28 @@ export default function Goals() {
           Your Badges
         </h1>
         <DrawerDemo />
+        <div className="w-full mx-auto flex justify-center">
+          <Button
+            onClick={handleCreateGoals}
+            variant="default"
+            className="w-[500px]"
+            disabled={loading}
+          >
+            Create new Challenge
+          </Button>
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 gap-4 overflow-y-scroll h-[calc(100vh-260px)]">
-        {!userGoals.length && !isLoading && (
-          <div className="w-full mx-auto flex justify-center">
-            <Button
-              onClick={handleCreateGoals}
-              variant="default"
-              className="w-[500px]"
-            >
-              Create challenges
-            </Button>
-          </div>
-        )}
-        {isLoading && (
+        {loading && (
           <div className="w-full mx-auto flex justify-center">
             <Loader2 width={50} height={50} className="animate-spin" />
           </div>
         )}
-        {userGoals?.map((goal, index) => (
+        {initialGoals?.map((goal) => (
           <GoalCard
-            icon={icons[index]?.icon}
+            icon={<Medal className="w-8 h-8 text-primary-foreground" />}
             goalId={goal.id}
-            state={goal.state}
+            state={goal.State}
             title={goal.title}
             key={goal.title}
           />
