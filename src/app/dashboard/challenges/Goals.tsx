@@ -3,7 +3,7 @@ import { DrawerDemo } from "./ui/Progress";
 import { GoalCard, sleep } from "./ui/GoalCard";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Loader2, Medal } from "lucide-react";
+import { Layers3, Loader2, Medal } from "lucide-react";
 import { Challenge } from "@prisma/client";
 import { useToast } from "@/components/ui/use-toast";
 import { crateNewChallenge } from "@/actions/createNewChallenge";
@@ -37,6 +37,7 @@ export default function Goals({ initialGoals }: Props) {
     }
     setIsLoading(false);
   };
+
   return (
     <>
       <div>
@@ -60,6 +61,12 @@ export default function Goals({ initialGoals }: Props) {
           {loading && (
             <div className="w-full mx-auto flex justify-center">
               <Loader2 width={50} height={50} className="animate-spin" />
+            </div>
+          )}
+          {!initialGoals.length && (
+            <div className="w-full h-full flex justify-center items-center flex-row">
+              <Layers3 size={32} />
+              <span>Aun no tienes Desafios</span>
             </div>
           )}
           {initialGoals?.map((goal) => (
