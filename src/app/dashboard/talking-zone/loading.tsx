@@ -7,7 +7,7 @@ export default function Loading({}: LoadingProps): ReactElement {
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="">
-        <Loader2 className="text-black dark:text-white  animate-spin" />
+        <Loader2 className="text-black dark:text-white  animate-spin text-5xl" />
       </div>
     </div>
   );
