@@ -11,6 +11,7 @@ import { crateNewChallenge } from "@/actions/createNewChallenge";
 interface Props {
   initialGoals: Challenge[];
 }
+
 export default function Goals({ initialGoals }: Props) {
   const [loading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -40,14 +41,14 @@ export default function Goals({ initialGoals }: Props) {
 
   return (
     <>
-      <div>
+      <div className="flex justify-center my-4">
         <Button
           onClick={handleCreateGoals}
           variant="progress"
           className="w-[120px]"
           disabled={loading}
         >
-          new challenge
+          New Challenge
         </Button>
       </div>
       <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
@@ -58,7 +59,7 @@ export default function Goals({ initialGoals }: Props) {
           <DrawerDemo />
         </div>
         {!initialGoals.length ? (
-          <div className="w-full h-full flex-row justify-center items-center ">
+          <div className="w-full h-full flex flex-col justify-center items-center">
             <Layers3
               size={32}
               className="text-4xl text-black dark:text-white"
@@ -68,7 +69,7 @@ export default function Goals({ initialGoals }: Props) {
             </span>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2  overflow-y-scroll h-[calc(100vh-300px)]">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 w-full h-full">
             {loading && (
               <div className="w-full mx-auto flex justify-center">
                 <Loader2 width={50} height={50} className="animate-spin" />
@@ -82,6 +83,7 @@ export default function Goals({ initialGoals }: Props) {
                 title={goal.title}
                 key={goal.title}
                 description={goal.description}
+                className="w-full h-full"
               />
             ))}
           </div>
