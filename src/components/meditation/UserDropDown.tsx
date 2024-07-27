@@ -64,7 +64,7 @@ export function UserDropDown({ image }: UserDropDownProps): ReactElement {
             </DropdownMenuItem>
           </>
         ))}
-        <DropdownMenuSeparator className="text-lg" />
+        <DropdownMenuSeparator className="font-bold" />
         <DropdownMenuItem>
           <LogoutLink className="w-full bg-gray-50">Log out</LogoutLink>
         </DropdownMenuItem>

@@ -76,7 +76,7 @@ export const GoalCard = ({
 
   return (
     <Card className="animate__animated animate__fadeInDown relative dark:bg-[#181a1b] rounded-lg p-4 flex flex-col items-center justify-between border dark:border-[#363b3d] w-80 h-60  mb-5">
-      <div className="w-full flex justify-between items-center mb-2">
+      <div className="w-full flex justify-between items-center">
         <ShowDetails details={description} />
         <Button
           onClick={handleClick}
@@ -87,7 +87,7 @@ export const GoalCard = ({
           {isLoading ? <Loader2 className="animate-spin" /> : "Complete"}
         </Button>
       </div>
-      <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center mb-2 border border-[#363b3d]">
+      <div className="bg-primary rounded-full w-16 h-16 flex items-center justify-center border border-[#363b3d]">
         {icon}
       </div>
       <div className="flex flex-col items-center">
