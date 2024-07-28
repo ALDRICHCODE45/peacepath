@@ -16,11 +16,11 @@ interface Props {
 
 export function ModalDetails({ details }: Props) {
   const images = [
-    "../../../public/koala1.jpg",
-    "../../../public/koala2.jpg",
-    "../../../public/koala3.jpg",
-    "../../../public/koala4.jpg",
-    "../../../public/koala5.jpg",
+    "/koala1.jpg",
+    "/koala2.jpg",
+    "/koala3.jpg",
+    "/koala4.jpg",
+    "/koala5.jpg",
   ];
 
   return (
