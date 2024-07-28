@@ -6,7 +6,7 @@ import { systemMessage } from "./promt";
 import prisma from "@/app/lib/db";
 import { revalidatePath } from "next/cache";
 
-interface ReturnAgs {
+export interface ReturnAgs {
   error?: string;
   ok: boolean;
 }

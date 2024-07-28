@@ -8,6 +8,7 @@ import { Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { unlockGoal } from "@/actions/unlockedChallenge";
 import { ShowDetails } from "./AlertDetails";
+import { ModalDetails } from "@/components/meditation/Modal-details";
 
 interface Props {
   title: string;
@@ -77,7 +78,7 @@ export const GoalCard = ({
   return (
     <Card className="animate__animated animate__fadeInDown relative dark:bg-[#181a1b] rounded-lg p-4 flex flex-col items-center justify-between border dark:border-[#363b3d] w-full h-full  mb-5">
       <div className="w-full flex justify-between items-center">
-        <ShowDetails details={description} />
+        <ModalDetails details={description} />
         <Button
           onClick={handleClick}
           disabled={state === "Unlocked"}
