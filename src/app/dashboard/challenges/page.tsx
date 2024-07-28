@@ -35,7 +35,9 @@ export default async function Page(): Promise<ReactElement> {
   const initialData = await getUserChallenges();
   return (
     <>
-      <Goals initialGoals={initialData} />
+      <main id="modal-root">
+        <Goals initialGoals={initialData} />
+      </main>
     </>
   );
 }
