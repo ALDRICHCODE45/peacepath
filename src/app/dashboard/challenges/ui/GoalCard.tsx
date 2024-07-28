@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { unlockGoal } from "@/actions/unlockedChallenge";
-import { ShowDetails } from "./AlertDetails";
 import { ModalDetails } from "@/components/meditation/Modal-details";
 
 interface Props {

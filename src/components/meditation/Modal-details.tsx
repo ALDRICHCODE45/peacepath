@@ -4,7 +4,6 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalTrigger,
 } from "../ui/animated-modal";
 import Image from "next/image";
@@ -37,7 +36,7 @@ export function ModalDetails({ details }: Props) {
         <ModalBody>
           <ModalContent>
             <h4 className="text-lg md:text-2xl text-neutral-600 dark:text-neutral-100 font-bold text-center mb-8">
-              Detalles de tu
+              Detalles de tu{" "}
               <span className="px-1 py-0.5 rounded-md bg-gray-100 dark:bg-neutral-800 dark:border-neutral-700 border border-gray-200">
                 Desafio.
               </span>{" "}
@@ -76,7 +75,7 @@ export function ModalDetails({ details }: Props) {
               <div className="flex  items-center justify-center">
                 <PencilLine
                   size={48}
-                  className="text-neutral-700 dark:text-neutral-300 "
+                  className="text-neutral-700 dark:text-neutral-300 text-9xl"
                 />
                 <span className="text-neutral-700 dark:text-neutral-300 text-3xl">
                   {details}
