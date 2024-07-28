@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Modal,
   ModalBody,
@@ -8,13 +8,22 @@ import {
 } from "../ui/animated-modal";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { PencilLine } from "lucide-react";
+import Loading from "@/app/dashboard/talking-zone/loading";
 
 interface Props {
   details: string;
 }
 
 export function ModalDetails({ details }: Props) {
+  const [load, setLoad] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLoad(true);
+  }, []);
+
+  if (!load) {
+    return <Loading />;
+  }
   const images = [
     "https://images.unsplash.com/photo-1517322048670-4fba75cbbb62?q=80&w=3000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1573790387438-4da905039392?q=80&w=3425&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -22,6 +31,7 @@ export function ModalDetails({ details }: Props) {
     "https://images.unsplash.com/photo-1554931670-4ebfabf6e7a9?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "https://images.unsplash.com/photo-1546484475-7f7bd55792da?q=80&w=2581&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   ];
+
   return (
     <div className="  flex items-center justify-center">
       <Modal>
