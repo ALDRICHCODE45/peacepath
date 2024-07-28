@@ -64,7 +64,7 @@ export function ModalDetails({ details }: Props) {
                     className="rounded-xl -mr-4 mt-4 p-1 bg-white dark:bg-neutral-800 dark:border-neutral-700 border border-neutral-100 flex-shrink-0 overflow-hidden"
                   >
                     <Image
-                      src={image}
+                      src={images[idx]}
                       alt="bali images"
                       width="500"
                       height="500"
