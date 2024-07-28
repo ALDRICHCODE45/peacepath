@@ -57,8 +57,11 @@ export function AlertCreateChallenge({ handleNewChallenge }: Props) {
     <AlertDialog>
       <AlertDialogTrigger asChild>
         <Button disabled={isLoading} variant="outline">
-          {isLoading && <Loader2 className="mr-2 w-4 h-4 animate-spin" />}
-          Create Meditation
+          {isLoading ? (
+            <Loader2 className="mr-2 w-4 h-4 animate-spin" />
+          ) : (
+            "Create Challenge"
+          )}
         </Button>
       </AlertDialogTrigger>
       <AlertDialogContent>
