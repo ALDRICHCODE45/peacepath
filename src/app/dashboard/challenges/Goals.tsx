@@ -1,7 +1,7 @@
 "use client";
 import { DrawerDemo } from "./ui/Progress";
 import { GoalCard } from "./ui/GoalCard";
-import { Loader2, Medal, PackageOpen } from "lucide-react";
+import { Medal, PackageOpen } from "lucide-react";
 import { Challenge } from "@prisma/client";
 import { crateNewChallenge } from "@/actions/createNewChallenge";
 import { AlertCreateChallenge } from "@/components/meditation/alert/AlertNewChallenge";
@@ -13,7 +13,7 @@ interface Props {
 export default function Goals({ initialGoals }: Props) {
   return (
     <>
-      <div id="modal-root">
+      <div>
         <AlertCreateChallenge handleNewChallenge={crateNewChallenge} />
       </div>
       <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
