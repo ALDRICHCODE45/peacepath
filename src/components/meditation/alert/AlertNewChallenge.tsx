@@ -69,7 +69,7 @@ export function AlertCreateChallenge({ handleNewChallenge }: Props) {
           <AlertDialogTitle>Estas completamente seguro?</AlertDialogTitle>
           <AlertDialogDescription>
             Esta accion creara un nuevo reto basado en tus conversaciones con
-            Kia
+            Kai
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
