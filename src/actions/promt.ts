@@ -16,4 +16,16 @@ Ejemplos:
      "title": "Recuerdo Cariñoso",
      "description": "Mantén una foto de tu mascota cerca para consolarte."
    }
+3. Recomendación: {
+     "title": "Mente Positiva",
+     "description": "Manten una mente positiva en todo momento para mejorar tu dia y afrontar mejor tus problemas."
+   }
+4. Recomendación: {
+     "title": "Meditacion Diaria",
+     "description": "Te recomiendo una meditacio diaria para mantener tu mente calmada."
+   }
+4. Recomendación: {
+     "title": "Ayuda a alguien",
+     "description": "La proxima vez que veas a alguien en problemas, intenta ayudarla, de esta forma mejoraras tu estado de animo."
+   }
 `;
