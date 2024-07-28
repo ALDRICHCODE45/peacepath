@@ -5,12 +5,23 @@ import { Medal, PackageOpen } from "lucide-react";
 import { Challenge } from "@prisma/client";
 import { crateNewChallenge } from "@/actions/createNewChallenge";
 import { AlertCreateChallenge } from "@/components/meditation/alert/AlertNewChallenge";
+import { useEffect, useState } from "react";
 
 interface Props {
   initialGoals: Challenge[];
 }
 
 export default function Goals({ initialGoals }: Props) {
+  const [load, setLoad] = useState<boolean>(false);
+
+  useEffect(() => {
+    setLoad(true);
+  }, []);
+
+  if (!load) {
+    return <span>loading</span>;
+  }
+
   return (
     <>
       <div>
