@@ -84,11 +84,6 @@ export function ModalDetails({ details }: Props) {
               </div>
             </div>
           </ModalContent>
-          <ModalFooter className="gap-4">
-            <button className="px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28">
-              Atras
-            </button>
-          </ModalFooter>
         </ModalBody>
       </Modal>
     </div>
