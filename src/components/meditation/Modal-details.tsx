@@ -72,12 +72,8 @@ export function ModalDetails({ details }: Props) {
               ))}
             </div>
             <div className="py-10 flex flex-wrap gap-x-4 gap-y-6 items-start justify-start max-w-sm mx-auto">
-              <div className="flex  items-center justify-center">
-                <PencilLine
-                  size={48}
-                  className="text-neutral-700 dark:text-neutral-300 text-9xl"
-                />
-                <span className="text-neutral-700 dark:text-neutral-300 text-3xl">
+              <div className="flex items-center justify-center">
+                <span className="text-neutral-700 dark:text-neutral-300 text-3xl underline">
                   {details}
                 </span>
               </div>
