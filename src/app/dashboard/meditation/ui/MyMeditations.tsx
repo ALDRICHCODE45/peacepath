@@ -19,6 +19,7 @@ export function MyMeditations() {
   const setActiveAudio = useAudioStore((store) => store.setActiveAudio);
   const userMeditations = useAudioStore((store) => store.audios);
   const activeAudio = useAudioStore((store) => store.activeAudio);
+
   return (
     <Sheet>
       <SheetTrigger asChild>

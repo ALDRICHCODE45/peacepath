@@ -41,11 +41,11 @@ export default function Goals({ initialGoals }: Props) {
               className="text-4xl text-black dark:text-white"
             />
             <span className="text-3xl text-black dark:text-white">
-              Aun no tienes Desafios
+              Aun no tienes Desafios.
             </span>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 w-full h-[calc(100vh-300px)] gap-5 overflow-y-scroll p-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 w-[800px] h-[calc(100vh-300px)] gap-5 overflow-y-scroll p-3">
             {initialGoals?.map((goal) => (
               <GoalCard
                 icon={<Medal className="w-8 h-8 text-primary-foreground" />}
