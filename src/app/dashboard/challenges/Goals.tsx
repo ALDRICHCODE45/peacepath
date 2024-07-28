@@ -13,7 +13,7 @@ interface Props {
 export default function Goals({ initialGoals }: Props) {
   return (
     <>
-      <div>
+      <div id="modal-root">
         <AlertCreateChallenge handleNewChallenge={crateNewChallenge} />
       </div>
       <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
