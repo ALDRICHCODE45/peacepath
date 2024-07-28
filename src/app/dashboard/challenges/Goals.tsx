@@ -69,10 +69,14 @@ export default function Goals({ initialGoals }: Props) {
             </span>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2 w-full h-full gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 w-full h-full gap-5">
             {loading && (
-              <div className="w-full mx-auto flex justify-center">
-                <Loader2 width={50} height={50} className="animate-spin" />
+              <div className="w-full mx-auto flex justify-center items-center">
+                <Loader2
+                  width={50}
+                  height={50}
+                  className="animate-spin text-black dark:text-white"
+                />
               </div>
             )}
             {initialGoals?.map((goal) => (
