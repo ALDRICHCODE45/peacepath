@@ -27,7 +27,7 @@ export default function Goals({ initialGoals }: Props) {
       <div>
         <AlertCreateChallenge handleNewChallenge={crateNewChallenge} />
       </div>
-      <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b]">
+      <div className="animate__animated animate__fadeInRight text-foreground rounded-lg p-6 w-full max-w-3xl mx-auto bg-[#ffffff] dark:bg-[#181a1b] overflow-y-scroll">
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-2xl font-bold text-black dark:text-white">
             Your Badges
@@ -45,7 +45,7 @@ export default function Goals({ initialGoals }: Props) {
             </span>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 w-full h-full gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 w-full h-full gap-5 ">
             {initialGoals?.map((goal) => (
               <GoalCard
                 icon={<Medal className="w-8 h-8 text-primary-foreground" />}
