@@ -38,12 +38,12 @@ export const GoalCard = ({
   const handleClick = async () => {
     setIsLoading(true);
     await sleep(2);
+    await unlockGoal(goalId);
     toast({
       variant: "default",
       title: "¡Felicidades!, Meta Desbloqueada",
       description: "¡Puedes hacerlo!",
     });
-    await unlockGoal(goalId);
     const duration = 5 * 1000;
     const animationEnd = Date.now() + duration;
     const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
