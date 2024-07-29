@@ -29,5 +29,5 @@ export async function GET() {
       },
     });
   }
-  return NextResponse.redirect("https://peacepath.vercel.app/home");
+  return NextResponse.redirect("https://peacepath.vercel.app/dashboard");
 }
