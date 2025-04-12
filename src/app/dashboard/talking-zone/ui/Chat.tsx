@@ -65,7 +65,7 @@ export default function Chat({ initialMessages = [] }: ChatProps) {
             <KaiMessage key={message.id} text={message.text} />
           ) : (
             <UserMessage key={message.id} text={message.text} />
-          )
+          ),
         )}
         <div ref={messagesEndRef} className="bottom-0" />
       </div>
